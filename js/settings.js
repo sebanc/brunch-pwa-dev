@@ -19,6 +19,7 @@ document.getElementById('notify_stable').addEventListener('change', (event) => {
     setCookie("brunch_stable","yes");
   } else {
     setCookie("brunch_stable","no");
+    eraseCookie("latest_stable_brunch")
   }
 })
 
@@ -27,6 +28,7 @@ document.getElementById('notify_unstable').addEventListener('change', (event) =>
     setCookie("brunch_unstable","yes");
   } else {
     setCookie("brunch_unstable","no");
+    eraseCookie("latest_unstable_brunch")
   }
 })
 
