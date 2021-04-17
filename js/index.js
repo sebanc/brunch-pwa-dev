@@ -3,15 +3,19 @@ window.onload = function () {
 	var latest_stable;
 	var log = document.getElementById("log");
 	
-	if ('serviceWorker' in navigator) {
-		navigator.serviceWorker.register('/brunch-pwa/sw.js', {scope: '/brunch-pwa/'}).then(function(reg) {
-			console.log('Registration succeeded. Scope is ' + reg.scope);
-            const registration = await navigator.serviceWorker.ready;
+	async function registerVersionCheck() {
+	    const registration = await navigator.serviceWorker.ready;
             try {
                 await registration.periodicSync.register('get-latest-version', { minInterval: 60 * 60 * 1000, });
             } catch {
                 console.log('Periodic Sync could not be registered!');
             }
+	}
+	
+	if ('serviceWorker' in navigator) {
+		navigator.serviceWorker.register('/brunch-pwa/sw.js', {scope: '/brunch-pwa/'}).then(function(reg) {
+			console.log('Registration succeeded. Scope is ' + reg.scope);
+			registerVersionCheck();
 		}).catch(function(error) {
 			console.log('Registration failed with ' + error);
 		});
