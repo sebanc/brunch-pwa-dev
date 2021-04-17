@@ -32,7 +32,7 @@ window.onload = function () {
         if (result === 'granted') {
             const noti = new Notification('Brunch PWA', {
                 body: notification_text,
-                icon: '../images/icons/512.png'
+                icon: 'images/icons/512.png'
             });
             //noti.onclick = () => alert('clicked');
         }
