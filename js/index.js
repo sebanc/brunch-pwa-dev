@@ -37,7 +37,6 @@ window.onload = function () {
             //noti.onclick = () => alert('clicked');
         }
     }
-    showNotification("You will be notified of new brunch and chromeos versions.");
 
 	document.getElementById("form").onsubmit = function () {
 		document.getElementById("log").style.background = "gray";
@@ -76,7 +75,7 @@ window.onload = function () {
                         break;
                     }
                     if (getCookie("brunch_stable") === "yes") {
-                        if (getCookie("latest_stable_brunch") != "" && getCookie("latest_stable_brunch") != messages[1]) {
+                        if (getCookie("latest_stable_brunch") != null && getCookie("latest_stable_brunch") != messages[1]) {
                             showNotification("New stable brunch version available: " + messages[1]);
                         }
                         setCookie("latest_stable_brunch", messages[1]);
@@ -89,7 +88,7 @@ window.onload = function () {
                         break;
                     }
                     if (getCookie("brunch_unstable") === "yes") {
-                        if (getCookie("latest_unstable_brunch") != "" && getCookie("latest_unstable_brunch") != messages[1]) {
+                        if (getCookie("latest_unstable_brunch") != null && getCookie("latest_unstable_brunch") != messages[1]) {
                             showNotification("New unstable brunch version available: " + messages[1]);
                         }
                         setCookie("latest_unstable_brunch", messages[1]);
