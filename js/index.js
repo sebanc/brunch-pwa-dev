@@ -3,6 +3,9 @@ window.onload = function () {
 	var latest_stable;
 	var log = document.getElementById("log");
 	
+	checkCookie();
+	alert(document.cookie);
+	
 	async function registerVersionCheck() {
 	    const registration = await navigator.serviceWorker.ready;
             try {
