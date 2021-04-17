@@ -2,6 +2,9 @@ window.onload = function () {
 	var conn;
 	var latest_stable;
 	var log = document.getElementById("log");
+	
+	checkCookie();
+	alert(document.cookie);
 
 	document.getElementById("form4").onsubmit = function () {
 		document.getElementById("log").style.background = "gray";
