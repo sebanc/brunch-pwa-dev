@@ -11,7 +11,7 @@ async function periodicsync() {
   if ('periodicSync' in registration) {
     self.addEventListener('periodicsync', (event) => {
 	    if (event.tag === 'get-latest-version') {
-      		event.waitUntil(console.log('In periodicsync handler'));
+      		console.log('In periodicsync handler');
 	    }
     });
 
