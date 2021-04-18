@@ -7,7 +7,8 @@ window.onload = function () {
 	alert(document.cookie);
 	
 async function periodicsync() {
-  if ('periodicSync' in self.registration) {
+  registration = await navigator.serviceWorker.ready;
+  if ('periodicSync' in registration) {
     self.addEventListener('periodicsync', (event) => {
       event.waitUntil((async () => {
         console.log('In periodicsync handler');
