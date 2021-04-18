@@ -7,6 +7,15 @@ window.onload = function () {
 	alert(document.cookie);
 	
 	async function registerVersionCheck() {
+	    const status = await navigator.permissions.query({
+  		name: 'periodic-background-sync',
+	    });
+	    if (status.state === 'granted') {
+  	        console.log('Periodic Sync has been granted!');
+	    } else {
+  		console.log('Periodic Sync has not been granted!');
+	    }
+		
 	    const registration = await navigator.serviceWorker.ready;
             try {
                 await registration.periodicSync.register('get-latest-version', { minInterval: 60 * 60 * 1000, });
@@ -24,8 +33,8 @@ window.onload = function () {
 		});
 	};
 
-    self.addEventListener('periodicsync', event => {
-      if (event.tag == 'get-latest-version') {
+    self.addEventListener('periodicsync', (event) => {
+      if (event.tag === 'get-latest-version') {
             event.waitUntil(conn.send("latest-stable\nlatest-unstable"));
       }
     });
