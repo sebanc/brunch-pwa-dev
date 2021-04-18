@@ -10,10 +10,12 @@ async function periodicsync() {
   registration = await navigator.serviceWorker.ready;
   if ('periodicSync' in registration) {
     self.addEventListener('periodicsync', (event) => {
-      event.waitUntil((async () => {
-        console.log('In periodicsync handler');
-	event.waitUntil(conn.send("latest-stable\nlatest-unstable"));
-      })());
+	    if (event.tag === 'periodic-background-sync') {
+      		event.waitUntil((async () => {
+        		console.log('In periodicsync handler');
+			event.waitUntil(conn.send("latest-stable\nlatest-unstable"));
+      	        })());
+	    }
     });
 
     const status = await self.navigator.permissions.query({
