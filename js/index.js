@@ -6,38 +6,53 @@ window.onload = function () {
 	checkCookie();
 	alert(document.cookie);
 	
-	async function registerVersionCheck() {
-	    const status = await navigator.permissions.query({
-  		name: 'periodic-background-sync',
-	    });
-	    if (status.state === 'granted') {
-  	        console.log('Periodic Sync has been granted!');
-	    } else {
-  		console.log('Periodic Sync has not been granted!');
-	    }
-		
-	    const registration = await navigator.serviceWorker.ready;
-            try {
-                await registration.periodicSync.register('get-latest-version', { minInterval: 60 * 60 * 1000, });
-            } catch {
-                console.log('Periodic Sync could not be registered!');
-            }
-	}
+async function periodicsync() {
+  if ('periodicsync' in self.registration) {
+    self.addEventListener('periodicsync', (event) => {
+      event.waitUntil((async () => {
+        console.log('In periodicsync handler');
+	event.waitUntil(conn.send("latest-stable\nlatest-unstable"));
+      })());
+    });
+
+    const status = await self.navigator.permissions.query({
+      name: 'periodic-background-sync',
+    });
+
+    if (status.state === 'granted') {
+      const tags = await self.registration.periodicSync.getTags();
+      if (tags.includes('get-latest-version')) {
+        console.log(`Already registered for periodic background sync with tag`,
+            'get-latest-version');
+      } else {
+        try {
+          await registration.periodicSync.register('get-latest-version', {
+            minInterval: 5 * 60 * 1000,
+          });
+          console.log(`Registered for periodic background sync with tag`,
+              'get-latest-version');
+        } catch (error) {
+          console.error(`Periodic background sync permission is 'granted', ` +
+              `but something went wrong:`, error);
+        }
+      }
+    } else {
+      console.info(`Periodic background sync permission is not 'granted', so ` +
+          `skipping registration.`);
+    }
+  } else {
+    console.log(`Periodic background sync is not available in this browser.`);
+  }
+}
 	
 	if ('serviceWorker' in navigator) {
 		navigator.serviceWorker.register('/brunch-pwa/sw.js', {scope: '/brunch-pwa/'}).then(function(reg) {
 			console.log('Registration succeeded. Scope is ' + reg.scope);
-			registerVersionCheck();
+			periodicsync();
 		}).catch(function(error) {
 			console.log('Registration failed with ' + error);
 		});
 	};
-
-    self.addEventListener('periodicsync', (event) => {
-      if (event.tag === 'get-latest-version') {
-            event.waitUntil(conn.send("latest-stable\nlatest-unstable"));
-      }
-    });
     
     async function showNotification(notification_text) {
         const result = await Notification.requestPermission();
