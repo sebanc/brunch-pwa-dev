@@ -6,19 +6,9 @@ window.onload = function () {
 	checkCookie();
 	alert(document.cookie);
 	
-	async function TestPlan() {
-  		console.log('In periodicsync handler');
-	}
-	
 async function periodicsync() {
   registration = await navigator.serviceWorker.ready;
   if ('periodicSync' in registration) {
-    self.addEventListener('periodicsync', (event) => {
-	    if (event.tag === 'get-latest-version') {
-      		event.waitUntil(TestPlan());
-	    }
-    });
-
     const status = await self.navigator.permissions.query({
       name: 'periodic-background-sync',
     });
@@ -56,6 +46,16 @@ async function periodicsync() {
 			console.log('Registration failed with ' + error);
 		});
 	};
+	
+	async function TestPlan() {
+  		console.log('In periodicsync handler');
+	}
+	
+	    self.addEventListener('periodicsync', (event) => {
+	    	if (event.tag === 'get-latest-version') {
+			event.waitUntil(TestPlan());
+	    	}
+    	    });
     
     async function showNotification(notification_text) {
         const result = await Notification.requestPermission();
