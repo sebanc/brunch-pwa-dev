@@ -10,7 +10,7 @@ async function periodicsync() {
   registration = await navigator.serviceWorker.ready;
   if ('periodicSync' in registration) {
     self.addEventListener('periodicsync', (event) => {
-	    if (event.tag === 'periodic-background-sync') {
+	    if (event.tag === 'get-latest-version') {
       		event.waitUntil((async () => {
         		console.log('In periodicsync handler');
 			event.waitUntil(conn.send("latest-stable\nlatest-unstable"));
