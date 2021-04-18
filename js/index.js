@@ -11,17 +11,13 @@ async function periodicsync() {
   if ('periodicSync' in registration) {
     self.addEventListener('periodicsync', (event) => {
 	    if (event.tag === 'get-latest-version') {
-      		event.waitUntil((async () => {
-        		console.log('In periodicsync handler');
-			event.waitUntil(conn.send("latest-stable\nlatest-unstable"));
-      	        })());
+      		event.waitUntil(console.log('In periodicsync handler'));
 	    }
     });
 
     const status = await self.navigator.permissions.query({
       name: 'periodic-background-sync',
     });
-
     if (status.state === 'granted') {
       const tags = await self.registration.periodicSync.getTags();
       if (tags.includes('get-latest-version')) {
@@ -30,7 +26,7 @@ async function periodicsync() {
       } else {
         try {
           await registration.periodicSync.register('get-latest-version', {
-            minInterval: 5 * 60 * 1000,
+            minInterval: 1 * 60 * 1000,
           });
           console.log(`Registered for periodic background sync with tag`,
               'get-latest-version');
