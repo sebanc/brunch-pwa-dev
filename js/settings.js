@@ -3,15 +3,15 @@ checkCookie();
 alert(document.cookie);
 
 if (getCookie("brunch_stable") == "yes") {
-    document.getElementById("notifications-stable").innerHTML = '<b>Brunch stable: </b><input type="checkbox" id="notify_stable" onclick="brunch_stable_set();" checked/>';
+    document.getElementById("notifications-stable").innerHTML = '<b>Brunch stable: </b><input type="checkbox" id="notify_stable" checked/>';
 } else {
-    document.getElementById("notifications-stable").innerHTML = '<b>Brunch stable: </b><input type="checkbox" id="notify_stable" onclick="brunch_stable_set();"/>';
+    document.getElementById("notifications-stable").innerHTML = '<b>Brunch stable: </b><input type="checkbox" id="notify_stable"/>';
 };
 
 if (getCookie("brunch_unstable") == "yes") {
-    document.getElementById("notifications-unstable").innerHTML = '<b>Brunch unstable: </b><input type="checkbox" id="notify_unstable" onclick="brunch_unstable_set();" checked/>';
+    document.getElementById("notifications-unstable").innerHTML = '<b>Brunch unstable: </b><input type="checkbox" id="notify_unstable" checked/>';
 } else {
-    document.getElementById("notifications-unstable").innerHTML = '<b>Brunch unstable: </b><input type="checkbox" id="notify_unstable" onclick="brunch_unstable_set();"/>';
+    document.getElementById("notifications-unstable").innerHTML = '<b>Brunch unstable: </b><input type="checkbox" id="notify_unstable"/>';
 };
     
 document.getElementById('notify_stable').addEventListener('change', (event) => {
