@@ -6,12 +6,16 @@ window.onload = function () {
 	checkCookie();
 	alert(document.cookie);
 	
+	async function TestPlan() {
+  		console.log('In periodicsync handler');
+	}
+	
 async function periodicsync() {
   registration = await navigator.serviceWorker.ready;
   if ('periodicSync' in registration) {
     self.addEventListener('periodicsync', (event) => {
 	    if (event.tag === 'get-latest-version') {
-      		console.log('In periodicsync handler');
+      		event.waitUntil(TestPlan());
 	    }
     });
 
