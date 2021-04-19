@@ -48,3 +48,13 @@ self.addEventListener('notificationclick', event => {
       })
     );
 });
+
+	const TestPlan = async () => {
+  		console.log('In periodicsync handler');
+	};
+	
+	    self.addEventListener('periodicsync', (event) => {
+	    	if (event.tag == 'get-latest-version') {
+			event.waitUntil(TestPlan());
+	    	}
+    	    });
