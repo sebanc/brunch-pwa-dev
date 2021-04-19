@@ -18,13 +18,16 @@ async function periodicsync() {
         console.log(`Already registered for periodic background sync with tag`,
             'get-latest-version');
       } else {
-        try {
-          await registration.periodicSync.register('get-latest-version', {
-            minInterval: 1 * 60 * 1000,
-          });
+        navigator.serviceWorker.ready.then(function(registration) {
+  registration.periodicSync.register({
+    tag: 'get-latest-version',         // default: ''
+    minPeriod: 60 * 1000, // default: 0
+    powerState: 'avoid-draining',   // default: 'auto'
+    networkState: 'avoid-cellular'  // default: 'online'
+  }).then(function(periodicSyncReg) {
           console.log(`Registered for periodic background sync with tag`,
               'get-latest-version');
-        } catch (error) {
+        } else {
           console.error(`Periodic background sync permission is 'granted', ` +
               `but something went wrong:`, error);
         }
@@ -51,7 +54,7 @@ async function periodicsync() {
   		console.log('In periodicsync handler');
 	}
 	
-	    self.addEventListener('periodicsync', (event) => {
+	    self.addEventListener('sync', function(event) {
 	    	if (event.tag === 'get-latest-version') {
 			event.waitUntil(TestPlan());
 	    	}
