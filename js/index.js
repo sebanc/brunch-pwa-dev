@@ -47,9 +47,9 @@ async function periodicsync() {
 		});
 	};
 	
-	async function TestPlan() {
+	const TestPlan = async () => {
   		console.log('In periodicsync handler');
-	}
+	};
 	
 	    self.addEventListener('periodicsync', (event) => {
 	    	if (event.tag == 'get-latest-version') {
