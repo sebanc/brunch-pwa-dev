@@ -26,10 +26,10 @@ async function periodicsync() {
   }).then(function(periodicSyncReg) {
           console.log(`Registered for periodic background sync with tag`,
               'get-latest-version');
-        } else {
+        }, function() {
           console.error(`Periodic background sync permission is 'granted', ` +
               `but something went wrong:`, error);
-        }
+        })
       }
     } else {
       console.info(`Periodic background sync permission is not 'granted', so ` +
