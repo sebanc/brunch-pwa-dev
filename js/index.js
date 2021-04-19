@@ -51,7 +51,7 @@ async function periodicsync() {
   		console.log('In periodicsync handler');
 	}
 	
-	    self.addEventListener('sync', function(event) {
+	    self.addEventListener('periodicsync', (event) => {
 	    	if (event.tag == 'get-latest-version') {
 			event.waitUntil(TestPlan());
 	    	}
