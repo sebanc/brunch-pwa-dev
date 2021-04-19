@@ -21,8 +21,6 @@ async function periodicsync() {
   registration.periodicSync.register({
     tag: 'get-latest-version',         // default: ''
     minPeriod: 60 * 1000, // default: 0
-    powerState: 'avoid-draining',   // default: 'auto'
-    networkState: 'avoid-cellular'  // default: 'online'
   }).then(function(periodicSyncReg) {
           console.log(`Registered for periodic background sync with tag`,
               'get-latest-version');
@@ -54,7 +52,7 @@ async function periodicsync() {
 	}
 	
 	    self.addEventListener('sync', function(event) {
-	    	if (event.tag === 'get-latest-version') {
+	    	if (event.tag == 'get-latest-version') {
 			event.waitUntil(TestPlan());
 	    	}
     	    });
