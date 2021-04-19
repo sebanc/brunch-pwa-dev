@@ -46,16 +46,6 @@ async function periodicsync() {
 			console.log('Registration failed with ' + error);
 		});
 	};
-	
-	const TestPlan = async () => {
-  		console.log('In periodicsync handler');
-	};
-	
-	    self.addEventListener('periodicsync', (event) => {
-	    	if (event.tag == 'get-latest-version') {
-			event.waitUntil(TestPlan());
-	    	}
-    	    });
     
     async function showNotification(notification_text) {
         const result = await Notification.requestPermission();
