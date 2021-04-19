@@ -18,7 +18,6 @@ async function periodicsync() {
         console.log(`Already registered for periodic background sync with tag`,
             'get-latest-version');
       } else {
-        navigator.serviceWorker.ready.then(function(registration) {
   registration.periodicSync.register({
     tag: 'get-latest-version',         // default: ''
     minPeriod: 60 * 1000, // default: 0
