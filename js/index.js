@@ -6,6 +6,10 @@ window.onload = function () {
 	checkCookie();
 	alert(document.cookie);
 	
+      	const TestPlan = async () => {
+  		console.log('In periodicsync handler');
+	};
+	
 async function periodicsync() {
   registration = await navigator.serviceWorker.ready;
   if ('periodicSync' in registration) {
@@ -20,7 +24,7 @@ async function periodicsync() {
       } else {
   registration.periodicSync.register({
     tag: 'get-latest-version',         // default: ''
-    minPeriod: 60 * 1000, // default: 0
+    minPeriod: 12 * 60 * 60 * 1000, // default: 0
   }).then(function(periodicSyncReg) {
           console.log(`Registered for periodic background sync with tag`,
               'get-latest-version');
@@ -29,6 +33,11 @@ async function periodicsync() {
               `but something went wrong:`, error);
         })
       }
+      self.addEventListener('periodicsync', (event) => {
+	    if (event.tag == 'get-latest-version') {
+			event.waitUntil(TestPlan());
+	    }
+      });
     } else {
       console.info(`Periodic background sync permission is not 'granted', so ` +
           `skipping registration.`);
