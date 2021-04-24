@@ -7,9 +7,12 @@ window.onload = function () {
 	alert(document.cookie);
 	
 async function periodicsync() {
-navigator.serviceWorker.ready.then(function(swRegistration) {
-      return swRegistration.sync.register('get-latest-version');
-    });
+navigator.serviceWorker.ready.then(registration => {
+  registration.periodicSync.register('get-latest-news', {
+    // Minimum interval at which the sync may fire.
+    minInterval: 24 * 60 * 60 * 1000,
+  });
+});
 }
 	
 	if ('serviceWorker' in navigator) {
