@@ -8,7 +8,7 @@ window.onload = function () {
 	
 async function periodicsync() {
 navigator.serviceWorker.ready.then(function(swRegistration) {
-      return swRegistration.sync.register('myFirstSync');
+      return swRegistration.sync.register('get-latest-version');
     });
 }
 	
