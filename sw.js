@@ -33,6 +33,10 @@ self.addEventListener('fetch', function(event) {
   );
 });
 
+self.addEventListener('sync', function (event) {
+ console.log('syncing started.');
+});
+
 self.addEventListener('notificationclick', event => {
     const rootUrl = new URL('/', location).href;
     event.notification.close();
