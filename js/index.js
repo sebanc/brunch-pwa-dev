@@ -10,7 +10,7 @@ async function periodicsync() {
 navigator.serviceWorker.ready.then(registration => {
   registration.periodicSync.register('get-latest-news', {
     // Minimum interval at which the sync may fire.
-    minInterval: 12 * 60 * 60 * 1000,
+    minInterval: 15 * 60 * 1000,
   });
 });
 }
