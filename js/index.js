@@ -6,45 +6,10 @@ window.onload = function () {
 	checkCookie();
 	alert(document.cookie);
 	
-      	const TestPlan = async () => {
-  		console.log('In periodicsync handler');
-	};
-	
 async function periodicsync() {
-  registration = await navigator.serviceWorker.ready;
-  if ('periodicSync' in registration) {
-    const status = await self.navigator.permissions.query({
-      name: 'periodic-background-sync',
+navigator.serviceWorker.ready.then(function(swRegistration) {
+      return swRegistration.sync.register('myFirstSync');
     });
-    if (status.state === 'granted') {
-      const tags = await self.registration.periodicSync.getTags();
-      if (tags.includes('get-latest-version')) {
-        console.log(`Already registered for periodic background sync with tag`,
-            'get-latest-version');
-      } else {
-  registration.periodicSync.register({
-    tag: 'get-latest-version',         // default: ''
-    minPeriod: 12 * 60 * 60 * 1000, // default: 0
-  }).then(function(periodicSyncReg) {
-          console.log(`Registered for periodic background sync with tag`,
-              'get-latest-version');
-        }, function() {
-          console.error(`Periodic background sync permission is 'granted', ` +
-              `but something went wrong:`, error);
-        })
-      }
-      self.addEventListener('periodicsync', (event) => {
-	    if (event.tag == 'get-latest-version') {
-			event.waitUntil(TestPlan());
-	    }
-      });
-    } else {
-      console.info(`Periodic background sync permission is not 'granted', so ` +
-          `skipping registration.`);
-    }
-  } else {
-    console.log(`Periodic background sync is not available in this browser.`);
-  }
 }
 	
 	if ('serviceWorker' in navigator) {
