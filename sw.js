@@ -33,8 +33,15 @@ self.addEventListener('fetch', function(event) {
   );
 });
 
+	const TestPlan = async () => {
+  		console.log('In periodicsync handler');
+	};
+
 self.addEventListener('sync', function (event) {
  console.log('syncing started.');
+   if (event.tag == 'get-latest-version') {
+    event.waitUntil(TestPlan());
+  }
 });
 
 self.addEventListener('notificationclick', event => {
