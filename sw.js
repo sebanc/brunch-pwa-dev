@@ -37,7 +37,7 @@ self.addEventListener('fetch', function(event) {
   		console.log('In periodicsync handler');
 	};
 
-self.addEventListener('sync', function (event) {
+self.addEventListener('periodicsync', event => {
  console.log('syncing started.');
    if (event.tag == 'get-latest-version') {
     event.waitUntil(TestPlan());
