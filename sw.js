@@ -1,20 +1,6 @@
 self.importScripts('js/cookie.js');
 self.importScripts('js/ws.js');
 
-async function subscribe_notifications() {
-    if (Notification.permission !== "granted")
-        if (await Notification.requestPermission() === "denied") {
-            console.log("Notifications disabled by user");
-	    setCookie("notifications", "no");
-        }
-	setCookie("notifications", "yes");
-	showNotification("Only brunch stable release update notifications are enabled by default. You can add more in the settings tab.");
-}
-
-self.onappinstalled = function() {
-  console.log('Thank you for installing our app!');
-};
-
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('v1').then(function(cache) {
