@@ -21,6 +21,7 @@ self.addEventListener('install', function(event) {
         '/brunch-pwa-dev/images/icons/512.png',
         '/brunch-pwa-dev/js/addons.js',
         '/brunch-pwa-dev/js/chromeos.js',
+        '/brunch-pwa-dev/js/cookie.js',
         '/brunch-pwa-dev/js/index.js',
         '/brunch-pwa-dev/js/settings.js',
         '/brunch-pwa-dev/js/ws.js'
