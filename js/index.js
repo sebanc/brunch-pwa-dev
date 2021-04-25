@@ -36,6 +36,8 @@ navigator.serviceWorker.ready.then(registration => {
 		document.getElementById("latest-unstable").innerHTML = "<b>Unstable Brunch:</b><br>"+getCookie("latest-unstable");
 	};
 	
+	refresh_data();
+	
 	document.getElementById("form").onsubmit = function () {
 		document.getElementById("log").style.background = "gray";
 		document.getElementById("log").innerHTML = "<br>Console log:<br>";
