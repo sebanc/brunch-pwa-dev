@@ -11,7 +11,7 @@ async function subscribe_notifications() {
 	showNotification("Only brunch stable release update notifications are enabled by default. You can add more in the settings tab.");
 }
 
-self.addEventListener('appinstalled', () => {
+window.addEventListener('appinstalled', () => {
   console.log('PWA was installed');
   subscribe_notifications();
 });
