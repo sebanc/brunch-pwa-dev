@@ -10,7 +10,7 @@ window.onload = function () {
 	}
 
 	checkCookie();
-	alert(document.cookie);
+	//alert(document.cookie);
 	
 	document.getElementById("form4").onsubmit = function () {
 		document.getElementById("log").style.background = "gray";
