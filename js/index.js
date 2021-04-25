@@ -32,7 +32,6 @@ async function subscribe_notifications() {
 }
 
 async function periodicsync() {
-	if ('periodicSync' in registration) {
   try {
     await registration.periodicSync.register('get-latest-version', {
       // An interval of one day.
@@ -43,7 +42,6 @@ async function periodicsync() {
     return;
   }
   subscribe_notifications();
-}
 }
 	
 	if ('serviceWorker' in navigator) {
