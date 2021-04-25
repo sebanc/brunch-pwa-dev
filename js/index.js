@@ -56,5 +56,5 @@ navigator.serviceWorker.ready.then(registration => {
 		return false;
 	};
 
-	setTimeout(() => { conn.send("brunch-version\nlatest-stable\nlatest-unstable\nchromeos-version\nlatest-chromeos"); }, 2000);
+	setTimeout(() => { ws.send("brunch-version\nlatest-stable\nlatest-unstable\nchromeos-version\nlatest-chromeos"); }, 2000);
 };
