@@ -31,11 +31,21 @@ function ws_connect() {
           break;
         }
 				if (messages[0] === "latest-stable") {
-          setCookie("latest-stable", messages[1]);
+                              if (getCookie("brunch_stable") === "yes") {
+                        if (getCookie("latest-stable") != null && getCookie("latest-stable") != messages[1]) {
+                            showNotification("New stable brunch version available: " + messages[1]);
+                        }
+                        setCookie("latest-stable", messages[1]);
+                    }
           break;
         }
 				if (messages[0] === "latest-unstable") {
-          setCookie("latest-unstable", messages[1]);
+                              if (getCookie("brunch_unstable") === "yes") {
+                        if (getCookie("latest-unstable") != null && getCookie("latest-unstable") != messages[1]) {
+                            showNotification("New stable brunch version available: " + messages[1]);
+                        }
+                        setCookie("latest-unstable", messages[1]);
+                    }
           break;
         }
         if (messages[0] === "chromeos-version") {
@@ -43,7 +53,12 @@ function ws_connect() {
           break;
         }
 				if (messages[0] === "latest-chromeos") {
-          setCookie("latest-chromeos", messages[1]);
+                              if (getCookie("chromeos") === "yes") {
+                        if (getCookie("latest-chromeos") != null && getCookie("latest-chromeos") != messages[1]) {
+                            showNotification("New stable brunch version available: " + messages[1]);
+                        }
+                        setCookie("latest-chromeos", messages[1]);
+                    }
           break;
         }
 				log += "<b>" + messages[i] + "<b><br>";
