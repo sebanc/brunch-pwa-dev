@@ -1,18 +1,7 @@
 self.importScripts('js/cookie.js');
 self.importScripts('js/ws.js');
 
-function askNotificationPermission() {
-  // function to actually ask the permissions
-  function handlePermission(permission) {
-    // set the button to shown or hidden, depending on what the user answers
-    if(Notification.permission === 'denied' || Notification.permission === 'default') {
-      setCookie("notifications", "no");
-    } else {
-      showNotification("Only brunch stable release update notifications are enabled by default. You can add more in the settings tab.");
-      setCookie("notifications", "yes");
-    }
-  }
-async function subscribe() {
+async function subscribe_notifications() {
     if (Notification.permission !== "granted")
         if (await Notification.requestPermission() === "denied") {
             console.log("Notifications disabled by user");
@@ -25,7 +14,7 @@ async function subscribe() {
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('v1').then(function(cache) {
-      askNotificationPermission();
+      subscribe_notifications();
       return cache.addAll([
         '/brunch-pwa-dev/',
         '/brunch-pwa-dev/addons.html',
