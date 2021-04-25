@@ -12,10 +12,10 @@ window.onload = function () {
 	checkCookie();
 	alert(document.cookie);
 
-	function refresh_data() {
+	refresh_data = function() {
   		document.getElementById("chromeos-version").innerHTML = "<b>Installed ChromeOS:</b><br>"+getCookie("chromeos-version");
 		document.getElementById("latest-chromeos").innerHTML = "<b>Latest ChromeOS:</b><br>"+getCookie("latest-chromeos");
-	}
+	};
 	
 	document.getElementById("form3").onsubmit = function () {
 		document.getElementById("log").style.background = "gray";
