@@ -23,6 +23,7 @@ self.addEventListener('install', function(event) {
         '/brunch-pwa-dev/js/chromeos.js',
         '/brunch-pwa-dev/js/index.js',
         '/brunch-pwa-dev/js/settings.js',
+        '/brunch-pwa-dev/js/ws.js'
       ]);
     })
   );
