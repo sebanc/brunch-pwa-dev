@@ -32,17 +32,15 @@ async function subscribe_notifications() {
 }
 
 async function periodicsync() {
-navigator.serviceWorker.ready.then(registration => {
+  const registration = await navigator.serviceWorker.ready;
   try {
-    registration.periodicSync.register('get-latest-version', {
-      // An interval of one day.
+    await registration.periodicSync.register('get-latest-version', {
       minInterval: 12 * 60 * 60 * 1000,
     });
-  } catch (error) {
-    console.log('Not able to register periodicSync');
+  } catch {
+    console.log('Periodic Sync could not be registered!');
     return;
   }
-});
   subscribe_notifications();
 }
 	
