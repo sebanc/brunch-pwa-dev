@@ -12,13 +12,30 @@ window.onload = function () {
 	checkCookie();
 	//alert(document.cookie);
 	
-async function periodicsync() {
-navigator.serviceWorker.ready.then(registration => {
-  registration.periodicSync.register('get-latest-version', {
+//async function periodicsync() {
+//navigator.serviceWorker.ready.then(registration => {
+//  registration.periodicSync.register('get-latest-version', {
     // Minimum interval at which the sync may fire.
-    minInterval: 12 * 60 * 60 * 1000,
-  });
-});
+//    minInterval: 12 * 60 * 60 * 1000,
+//  });
+//});
+//}
+
+async function periodicsync() {
+    const status = await navigator.permissions.query({
+      name: 'periodic-background-sync',
+    });
+    if (status.state === 'granted') {
+      try {
+        // Register new sync every 24 hours
+        await registration.periodicSync.register('news', {
+          minInterval: 24 * 60 * 60 * 1000, // 1 day
+        });
+        console.log('Periodic background sync registered!');
+      } catch(e) {
+        console.error('Periodic background sync registration failed');
+      }
+    }
 }
 	
 	if ('serviceWorker' in navigator) {
