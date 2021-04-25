@@ -25,9 +25,9 @@ if (getCookie("brunch_unstable") == "yes") {
 };
 	
 if (getCookie("chromeos") == "yes") {
-    document.getElementById("notifications-chromeos").innerHTML = '<b>ChromeOS: </b><input type="checkbox" id="notify_chromeos" checked/>';
+    document.getElementById("notifications-chromeos").innerHTML = '<b>ChromeOS recovery image: </b><input type="checkbox" id="notify_chromeos" checked/>';
 } else {
-    document.getElementById("notifications-chromeos").innerHTML = '<b>ChromeOS: </b><input type="checkbox" id="notify_chromeos"/>';
+    document.getElementById("notifications-chromeos").innerHTML = '<b>ChromeOS recovery image: </b><input type="checkbox" id="notify_chromeos"/>';
 };
     
 document.getElementById('notify_stable').addEventListener('change', (event) => {
