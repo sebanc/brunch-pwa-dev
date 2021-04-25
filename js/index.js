@@ -41,7 +41,16 @@ async function periodicsync() {
     console.log('Periodic Sync could not be registered!');
     return;
   }
-  subscribe_notifications();
+  if (Notification.permission !== "granted") {
+        if (await Notification.requestPermission() === "granted") {
+		setCookie("notifications", "yes");
+		showNotification("Only brunch stable release update notifications are enabled by default. You can add more in the settings tab.");
+		return;
+	}
+            console.log("Notifications disabled by user");
+	    setCookie("notifications", "no");
+	    await registration.periodicSync.unregister('get-latest-version');
+  }
 }
 	
 	if ('serviceWorker' in navigator) {
