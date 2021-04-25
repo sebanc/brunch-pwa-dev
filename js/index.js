@@ -32,6 +32,7 @@ async function subscribe_notifications() {
 }
 
 async function periodicsync() {
+navigator.serviceWorker.ready.then(registration => {
   try {
     await registration.periodicSync.register('get-latest-version', {
       // An interval of one day.
@@ -41,6 +42,7 @@ async function periodicsync() {
     console.log('Not able to register periodicSync');
     return;
   }
+});
   subscribe_notifications();
 }
 	
