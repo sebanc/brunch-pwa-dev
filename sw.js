@@ -1,3 +1,4 @@
+self.importScripts('js/cookie.js');
 self.importScripts('js/ws.js');
 
 self.addEventListener('install', function(event) {
