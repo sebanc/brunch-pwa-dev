@@ -10,7 +10,7 @@ window.onload = function () {
 	}
 
 	checkCookie();
-	alert(document.cookie);
+	//alert(document.cookie);
 	
 async function periodicsync() {
 navigator.serviceWorker.ready.then(registration => {
