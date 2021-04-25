@@ -17,6 +17,8 @@ window.onload = function () {
 		document.getElementById("latest-chromeos").innerHTML = "<b>Latest ChromeOS:</b><br>"+getCookie("latest-chromeos");
 	};
 	
+	refresh_data();
+	
 	document.getElementById("form3").onsubmit = function () {
 		document.getElementById("log").style.background = "gray";
 		document.getElementById("log").innerHTML = "<br>Console log:<br>";
