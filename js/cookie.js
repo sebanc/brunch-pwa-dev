@@ -24,10 +24,14 @@ function eraseCookie(name) {
 function checkCookie() {
   var brunch_stable=getCookie("brunch_stable");
   var brunch_unstable=getCookie("brunch_unstable");
+  var chromeos=getCookie("chromeos");
   if (brunch_stable == null) {
     setCookie("brunch_stable", "yes");
   }
   if (brunch_unstable == null) {
     setCookie("brunch_unstable", "no");
+  }
+  if (chromeos == null) {
+    setCookie("chromeos", "yes");
   }
 }
