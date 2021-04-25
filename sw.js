@@ -12,6 +12,15 @@ function askNotificationPermission() {
       setCookie("notifications", "yes");
     }
   }
+async function subscribe() {
+    if (Notification.permission !== "granted")
+        if (await Notification.requestPermission() === "denied") {
+            console.log("Notifications disabled by user");
+	    setCookie("notifications", "no");
+        }
+	setCookie("notifications", "yes");
+	showNotification("Only brunch stable release update notifications are enabled by default. You can add more in the settings tab.");
+}
 
 self.addEventListener('install', function(event) {
   event.waitUntil(
