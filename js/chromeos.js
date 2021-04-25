@@ -15,13 +15,15 @@ window.onload = function () {
 	refresh_data = function() {
   		document.getElementById("chromeos-version").innerHTML = "<b>Installed ChromeOS:</b><br>"+getCookie("chromeos-version");
 		document.getElementById("latest-chromeos").innerHTML = "<b>Latest ChromeOS:</b><br>"+getCookie("latest-chromeos");
+		document.getElementById("log").innerHTML = log;
 	};
 	
 	refresh_data();
 	
 	document.getElementById("form3").onsubmit = function () {
 		document.getElementById("log").style.background = "gray";
-		document.getElementById("log").innerHTML = "<br>Console log:<br>";
+		log = "<br>Console log:<br>";
+		document.getElementById("log").innerHTML = log;
 		if (!ws) {
 			return false;
 		}
