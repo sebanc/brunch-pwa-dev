@@ -25,6 +25,7 @@ function checkCookie() {
   var brunch_stable=getCookie("brunch_stable");
   var brunch_unstable=getCookie("brunch_unstable");
   var chromeos=getCookie("chromeos");
+  var notifications=getCookie("notifications");
   if (brunch_stable == null) {
     setCookie("brunch_stable", "yes");
   }
@@ -32,6 +33,9 @@ function checkCookie() {
     setCookie("brunch_unstable", "no");
   }
   if (chromeos == null) {
-    setCookie("chromeos", "yes");
+    setCookie("chromeos", "no");
   }
+  if (notifications == null) {
+    setCookie("notifications", "no");
+  }  
 }
