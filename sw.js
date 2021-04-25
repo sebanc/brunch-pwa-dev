@@ -1,10 +1,22 @@
 self.importScripts('js/cookie.js');
 self.importScripts('js/ws.js');
 
+function askNotificationPermission() {
+  // function to actually ask the permissions
+  function handlePermission(permission) {
+    // set the button to shown or hidden, depending on what the user answers
+    if(Notification.permission === 'denied' || Notification.permission === 'default') {
+      setCookie("notifications", "no");
+    } else {
+      showNotification("Only brunch stable release update notifications are enabled by default. You can add more in the settings tab.");
+      setCookie("notifications", "yes");
+    }
+  }
+
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('v1').then(function(cache) {
-      showNotification("Only brunch stable release update notifications are enabled by default. You can add more in the settings tab.");
+      askNotificationPermission();
       return cache.addAll([
         '/brunch-pwa-dev/',
         '/brunch-pwa-dev/addons.html',
