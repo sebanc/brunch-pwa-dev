@@ -12,6 +12,10 @@ window.onload = function () {
 	checkCookie();
 	//alert(document.cookie);
 	
+	refresh_data = function() {
+		document.getElementById("log").innerHTML = log;
+	};
+	
 	document.getElementById("form4").onsubmit = function () {
 		document.getElementById("log").style.background = "gray";
 		log = "<br>Console log:<br>";
