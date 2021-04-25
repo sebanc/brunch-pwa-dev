@@ -1,6 +1,17 @@
 var ws;
 var log = "";
 
+function showNotification(notification_text) {
+        const result = await Notification.requestPermission();
+        if (result === 'granted') {
+            const noti = new Notification('Brunch PWA', {
+                body: notification_text,
+                icon: 'images/icons/512.png'
+            });
+            //noti.onclick = () => alert('clicked');
+        }
+}
+
 function refresh_data() {
   console.log("Data refresh requested without display");
 }
