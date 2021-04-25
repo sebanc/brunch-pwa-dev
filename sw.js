@@ -1,3 +1,5 @@
+self.importScripts('js/ws.js');
+
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('v1').then(function(cache) {
@@ -35,6 +37,8 @@ self.addEventListener('fetch', function(event) {
 
 	const TestPlan = async () => {
   		console.log('In periodicsync handler');
+		ws_connect();
+		setTimeout(() => { ws.send("latest-stable\nlatest-unstable\nlatest-chromeos"); }, 2000);
 	};
 
 self.addEventListener('periodicsync', event => {
