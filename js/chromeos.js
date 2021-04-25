@@ -10,7 +10,7 @@ window.onload = function () {
 	}
 
 	checkCookie();
-	alert(document.cookie);
+	//alert(document.cookie);
 
 	refresh_data = function() {
   		document.getElementById("chromeos-version").innerHTML = "<b>Installed ChromeOS:</b><br>"+getCookie("chromeos-version");
