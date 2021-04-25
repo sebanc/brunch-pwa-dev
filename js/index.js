@@ -8,9 +8,9 @@ window.onload = function () {
 	
 async function periodicsync() {
 navigator.serviceWorker.ready.then(registration => {
-  registration.periodicSync.register('get-latest-news', {
+  registration.periodicSync.register('get-latest-version', {
     // Minimum interval at which the sync may fire.
-    minInterval: 15 * 60 * 1000,
+    minInterval: 12 * 60 * 60 * 1000,
   });
 });
 }
