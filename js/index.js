@@ -30,11 +30,11 @@ navigator.serviceWorker.ready.then(registration => {
 		});
 	};
 
-	function refresh_data() {
+	refresh_data = function() {
   		document.getElementById("brunch-version").innerHTML = "<b>Installed Brunch:</b><br>"+getCookie("brunch-version");
 		document.getElementById("latest-stable").innerHTML = "<b>Stable Brunch:</b><br>"+getCookie("latest-stable");
 		document.getElementById("latest-unstable").innerHTML = "<b>Unstable Brunch:</b><br>"+getCookie("latest-unstable");
-	}
+	};
 	
 	document.getElementById("form").onsubmit = function () {
 		document.getElementById("log").style.background = "gray";
