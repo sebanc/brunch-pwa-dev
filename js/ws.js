@@ -23,7 +23,6 @@ function ws_connect() {
 		};
 		ws.onmessage = function (evt) {
 			var messages = evt.data.split(':');
-      log = "";
 			for (var i = 0; i < messages.length; i++) {
         console.log("Message received: " + messages[i]);
 				if (messages[0] === "brunch-version") {
