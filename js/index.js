@@ -34,7 +34,7 @@ async function subscribe_notifications() {
 async function periodicsync() {
 navigator.serviceWorker.ready.then(registration => {
   try {
-    await registration.periodicSync.register('get-latest-version', {
+    registration.periodicSync.register('get-latest-version', {
       // An interval of one day.
       minInterval: 12 * 60 * 60 * 1000,
     });
