@@ -12,6 +12,7 @@ window.onload = function () {
 checkCookie();
 alert(document.cookie);
 
+if (getCookie("notifications") == "yes") {
 if (getCookie("brunch_stable") == "yes") {
     document.getElementById("notifications-stable").innerHTML = '<b>Brunch stable: </b><input type="checkbox" id="notify_stable" checked/>';
 } else {
@@ -53,5 +54,6 @@ document.getElementById('notify_chromeos').addEventListener('change', (event) =>
     setCookie("chromeos","no");
   }
 })
+}
 
 };
