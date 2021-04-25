@@ -1,7 +1,7 @@
 var ws;
 var log = "";
 
-function showNotification(notification_text) {
+async function showNotification(notification_text) {
         const result = await Notification.requestPermission();
         if (result === 'granted') {
             const noti = new Notification('Brunch PWA', {
