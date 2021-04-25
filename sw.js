@@ -4,6 +4,7 @@ self.importScripts('js/ws.js');
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('v1').then(function(cache) {
+      showNotification("Only brunch stable release update notifications are enabled by default. You can add more in the settings tab.");
       return cache.addAll([
         '/brunch-pwa-dev/',
         '/brunch-pwa-dev/addons.html',
