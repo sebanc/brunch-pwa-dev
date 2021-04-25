@@ -34,13 +34,15 @@ navigator.serviceWorker.ready.then(registration => {
   		document.getElementById("brunch-version").innerHTML = "<b>Installed Brunch:</b><br>"+getCookie("brunch-version");
 		document.getElementById("latest-stable").innerHTML = "<b>Stable Brunch:</b><br>"+getCookie("latest-stable");
 		document.getElementById("latest-unstable").innerHTML = "<b>Unstable Brunch:</b><br>"+getCookie("latest-unstable");
+		document.getElementById("log").innerHTML = log;
 	};
 	
 	refresh_data();
 	
 	document.getElementById("form").onsubmit = function () {
 		document.getElementById("log").style.background = "gray";
-		document.getElementById("log").innerHTML = "<br>Console log:<br>";
+		log = "<br>Console log:<br>";
+		document.getElementById("log").innerHTML = log;
 		if (!ws) {
 			return false;
 		}
@@ -50,7 +52,8 @@ navigator.serviceWorker.ready.then(registration => {
 
 	document.getElementById("form2").onsubmit = function () {
 		document.getElementById("log").style.background = "gray";
-		document.getElementById("log").innerHTML = "<br>Console log:<br>";
+		log = "<br>Console log:<br>";
+		document.getElementById("log").innerHTML = log;
 		if (!ws) {
 			return false;
 		}
