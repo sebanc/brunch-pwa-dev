@@ -23,13 +23,18 @@ if (getCookie("brunch_unstable") == "yes") {
 } else {
     document.getElementById("notifications-unstable").innerHTML = '<b>Brunch unstable: </b><input type="checkbox" id="notify_unstable"/>';
 };
+	
+if (getCookie("chromeos") == "yes") {
+    document.getElementById("notifications-chromeos").innerHTML = '<b>ChromeOS: </b><input type="checkbox" id="notify_chromeos" checked/>';
+} else {
+    document.getElementById("notifications-chromeos").innerHTML = '<b>ChromeOS: </b><input type="checkbox" id="notify_chromeos"/>';
+};
     
 document.getElementById('notify_stable').addEventListener('change', (event) => {
   if (event.currentTarget.checked) {
     setCookie("brunch_stable","yes");
   } else {
     setCookie("brunch_stable","no");
-    eraseCookie("latest_stable_brunch")
   }
 })
 
@@ -38,7 +43,14 @@ document.getElementById('notify_unstable').addEventListener('change', (event) =>
     setCookie("brunch_unstable","yes");
   } else {
     setCookie("brunch_unstable","no");
-    eraseCookie("latest_unstable_brunch")
+  }
+})
+	
+document.getElementById('notify_chromeos').addEventListener('change', (event) => {
+  if (event.currentTarget.checked) {
+    setCookie("chromeos","yes");
+  } else {
+    setCookie("chromeos","no");
   }
 })
 
