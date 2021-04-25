@@ -20,22 +20,19 @@ window.onload = function () {
 //  });
 //});
 //}
+	
+async function subscribe_notifications() {
+    if (Notification.permission !== "granted")
+        if (await Notification.requestPermission() === "denied") {
+            console.log("Notifications disabled by user");
+	    setCookie("notifications", "no");
+        }
+	setCookie("notifications", "yes");
+	showNotification("Only brunch stable release update notifications are enabled by default. You can add more in the settings tab.");
+}
 
 async function periodicsync() {
-    const status = await navigator.permissions.query({
-      name: 'periodic-background-sync',
-    });
-    if (status.state === 'granted') {
-      try {
-        // Register new sync every 24 hours
-        await registration.periodicSync.register('news', {
-          minInterval: 24 * 60 * 60 * 1000, // 1 day
-        });
-        console.log('Periodic background sync registered!');
-      } catch(e) {
-        console.error('Periodic background sync registration failed');
-      }
-    }
+subscribe_notifications();
 }
 	
 	if ('serviceWorker' in navigator) {
