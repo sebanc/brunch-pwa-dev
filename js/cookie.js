@@ -28,12 +28,15 @@ function checkCookie() {
   var notifications=getCookie("notifications");
   if (brunch_stable == null) {
     setCookie("brunch_stable", "yes");
+    setCookie("latest-stable", "");
   }
   if (brunch_unstable == null) {
     setCookie("brunch_unstable", "no");
+    setCookie("latest-unstable", "");
   }
   if (chromeos == null) {
     setCookie("chromeos", "no");
+    setCookie("latest-chromeos", "");
   }
   if (notifications == null) {
     setCookie("notifications", "no");
