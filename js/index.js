@@ -32,7 +32,18 @@ async function subscribe_notifications() {
 }
 
 async function periodicsync() {
-subscribe_notifications();
+	if ('periodicSync' in registration) {
+  try {
+    await registration.periodicSync.register('get-latest-version', {
+      // An interval of one day.
+      minInterval: 12 * 60 * 60 * 1000,
+    });
+  } catch (error) {
+    console.log('Not able to register periodicSync');
+    return;
+  }
+  subscribe_notifications();
+}
 }
 	
 	if ('serviceWorker' in navigator) {
