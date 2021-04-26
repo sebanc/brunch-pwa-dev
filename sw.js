@@ -28,7 +28,6 @@ self.addEventListener('install', function(event) {
       ]);
     })
   );
-  document.location.reload();
 });
 
 self.addEventListener('fetch', function(event) {
