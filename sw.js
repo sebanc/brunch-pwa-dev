@@ -51,7 +51,7 @@ self.addEventListener('periodicsync', event => {
   }
 });
 
-self.addEventListener("notificationclick", (event: any) => {
+self.addEventListener("notificationclick", event => {
    console.log("test");
    event.notification.close();   
    self.clients.openWindow(`/brunch-pwa-dev/index.html`)
