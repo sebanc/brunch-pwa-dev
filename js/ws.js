@@ -6,7 +6,8 @@ async function showNotification(notification_text) {
         if (result === 'granted') {
             const noti = new Notification('Brunch PWA', {
                 body: notification_text,
-                icon: 'images/icons/512.png'
+                icon: 'images/icons/512.png',
+		click_action : "https://sebanc.github.io/brunch-pwa-dev/"
             });
             //noti.onclick = () => alert('clicked');
         }
