@@ -5,7 +5,7 @@
   "start_url": ".",
   "url_handlers" : [
   {
-    "origin": "sebanc.github.com"
+    "origin": "sebanc.github.io"
   }
   ],
   "display": "standalone",
