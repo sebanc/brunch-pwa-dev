@@ -7,9 +7,9 @@ async function showNotification(notification_text) {
             const noti = new Notification('Brunch PWA', {
                 body: notification_text,
                 icon: 'images/icons/512.png',
-		url: 'https://sebanc.github.io/brunch-pwa-dev/'
+		data: {"url":"https://maps.google.com"}
             });
-            noti.onclick = () => window.open("https://sebanc.github.io/brunch-pwa-dev/");
+            //noti.onclick = () => window.open("https://sebanc.github.io/brunch-pwa-dev/");
         }
 }
 
