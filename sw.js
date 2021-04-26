@@ -50,9 +50,3 @@ self.addEventListener('periodicsync', event => {
     event.waitUntil(TestPlan());
   }
 });
-
-self.addEventListener("notificationclick", event => {
-   console.log("test");
-   event.notification.close();   
-   self.clients.openWindow(`/brunch-pwa-dev/index.html`);
-});
