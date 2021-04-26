@@ -51,12 +51,10 @@ self.addEventListener('periodicsync', event => {
   }
 });
 
-self.addEventListener('notificationclick', function(event) {
-  console.log('[Service Worker] Notification click Received.');
-
-  event.notification.close();
-
-  event.waitUntil(
-    clients.openWindow('https://developers.google.com/web/')
-  );
-});
+self.addEventListener('notificationclick', (event) => {
+            console.log('[Service Worker] Notification click Received. event:%s', event);
+            event.notification.close();
+            if (clients.openWindow && event.notification.data.url) {
+                event.waitUntil(clients.openWindow(event.notification.data.url));
+            }
+        });
