@@ -11,25 +11,6 @@ window.onload = function () {
 
 	checkCookie();
 	//alert(document.cookie);
-	
-//async function periodicsync() {
-//navigator.serviceWorker.ready.then(registration => {
-//  registration.periodicSync.register('get-latest-version', {
-    // Minimum interval at which the sync may fire.
-//    minInterval: 12 * 60 * 60 * 1000,
-//  });
-//});
-//}
-	
-async function subscribe_notifications() {
-    if (Notification.permission !== "granted")
-        if (await Notification.requestPermission() === "denied") {
-            console.log("Notifications disabled by user");
-	    setCookie("notifications", "no");
-        }
-	setCookie("notifications", "yes");
-	showNotification("Only brunch stable release update notifications are enabled by default. You can add more in the settings tab.");
-}
 
 async function periodicsync() {
   const registration = await navigator.serviceWorker.ready;
