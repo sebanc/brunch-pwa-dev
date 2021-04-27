@@ -13,7 +13,7 @@ window.onload = function () {
 	//alert(document.cookie);
 	
 	window.addEventListener('appinstalled', () => {
-  alert('installed');
+  window.location.reload();
 });
 
 async function periodicsync() {
