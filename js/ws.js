@@ -1,15 +1,18 @@
 var ws;
 var log = "";
 
+async function test_click() {
+	alert("test");
+}
+
 async function showNotification(notification_text) {
         const result = await Notification.requestPermission();
         if (result === 'granted') {
             const noti = new Notification('Brunch PWA', {
                 body: notification_text,
-                icon: 'images/icons/512.png',
-		data: {"url":"https://maps.google.com"}
+                icon: 'images/icons/512.png'
             });
-            //noti.onclick = () => window.open("https://sebanc.github.io/brunch-pwa-dev/");
+            noti.onclick = () => test_click();
         }
 }
 
