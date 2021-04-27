@@ -11,6 +11,10 @@ window.onload = function () {
 
 	checkCookie();
 	//alert(document.cookie);
+	
+	window.addEventListener('appinstalled', () => {
+  alert('installed');
+});
 
 async function periodicsync() {
   const registration = await navigator.serviceWorker.ready;
