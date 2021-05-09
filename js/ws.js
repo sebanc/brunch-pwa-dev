@@ -53,7 +53,7 @@ function ws_connect() {
 			}
 			if (messages[0] === "latest-unstable") {
 				if (notifications.value === "yes" && brunch_unstable.value === "yes") {
-					if (latest_unstable && latest_unstable.value !== "" && messages[1] !== "" && latest_stable.unvalue !== messages[1]) {
+					if (latest_unstable && latest_unstable.value !== "" && messages[1] !== "" && latest_unstable.value !== messages[1]) {
 						showNotification("New brunch unstable release available: " + messages[1], "brunch");
 					}
 				}
