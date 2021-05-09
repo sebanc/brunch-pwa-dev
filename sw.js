@@ -55,8 +55,8 @@ self.addEventListener('periodicsync', event => {
 self.addEventListener('notificationclick', function (event)
 {
     console.log(event.notification.data.tab);
-    const rootUrl = new URL('/', location).href;
-    const targetUrl = new URL('/html/' + event.notification.data.tab + '.html', location).href;
+    const rootUrl = new URL('/brunch-pwa-dev/', location).href;
+    const targetUrl = new URL('/brunch-pwa-dev/html/' + event.notification.data.tab + '.html', location).href;
     event.notification.close();
     event.waitUntil(
         clients.matchAll().then(matchedClients =>
