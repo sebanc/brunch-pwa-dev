@@ -65,6 +65,7 @@ self.addEventListener('notificationclick', function (event)
             {
                 if (client.url.indexOf(rootUrl) >= 0)
                 {
+		    client.navigate(targetUrl);
                     return client.focus();
                 }
             }
