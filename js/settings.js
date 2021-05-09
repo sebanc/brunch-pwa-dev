@@ -16,21 +16,26 @@ window.onload = function () {
 		window.location.href = "brunch.html";
 	});
 
-	if (getCookie("notifications") == "yes") {
+	var notifications = await getCookie("notifications");
+	var brunch_stable = await getCookie("brunch_stable");
+	var brunch_unstable = await getCookie("brunch_unstable");
+	var chromeos = await getCookie("chromeos");
+	
+	if (notifications.value == "yes") {
 			document.getElementById("intro").innerHTML = '<center>Display update notifications for:</center>';
-		if (getCookie("brunch_stable") == "yes") {
+		if (brunch_stable.value == "yes") {
 			document.getElementById("notifications-stable").innerHTML = '<b>Brunch stable: </b><input type="checkbox" id="notify_stable" checked/>';
 		} else {
 			document.getElementById("notifications-stable").innerHTML = '<b>Brunch stable: </b><input type="checkbox" id="notify_stable"/>';
 		};
 
-		if (getCookie("brunch_unstable") == "yes") {
+		if (brunch_unstable.value == "yes") {
 			document.getElementById("notifications-unstable").innerHTML = '<b>Brunch unstable: </b><input type="checkbox" id="notify_unstable" checked/>';
 		} else {
 			document.getElementById("notifications-unstable").innerHTML = '<b>Brunch unstable: </b><input type="checkbox" id="notify_unstable"/>';
 		};
 
-		if (getCookie("chromeos") == "yes") {
+		if (chromeos.value == "yes") {
 			document.getElementById("notifications-chromeos").innerHTML = '<b>ChromeOS recovery image: </b><input type="checkbox" id="notify_chromeos" checked/>';
 		} else {
 			document.getElementById("notifications-chromeos").innerHTML = '<b>ChromeOS recovery image: </b><input type="checkbox" id="notify_chromeos"/>';
