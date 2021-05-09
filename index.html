@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="manifest" href="manifest.webmanifest">
         <title>Brunch PWA</title>
         <script>
-                window.onload = function () {
-                function isReachable(url) {
+                window.addEventListener('online', handleConnection);
+                window.addEventListener('offline', handleConnection);
+                
+            function isReachable(url) {
                   /**
                    * Note: fetch() still "succeeds" for 404s on subdirectories,
                    * which is ok when only testing for domain reachability.
@@ -21,9 +24,10 @@
                       console.warn('[conn test failure]:', err);
                     });
                 }
-                    
+            
+            function handleConnection() {        
             if (navigator.onLine) {
-                isReachable("https://sebanc.github.io/").then(function(online) {
+                isReachable("https://sebanc.github.io/brunch-pwa-dev").then(function(online) {
                           if (online) {
                             // handle online status
                             console.log('online');
