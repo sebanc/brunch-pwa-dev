@@ -16,54 +16,57 @@ window.onload = function () {
 		window.location.href = "brunch.html";
 	});
 
-	var notifications = await getCookie("notifications");
-	var brunch_stable = await getCookie("brunch_stable");
-	var brunch_unstable = await getCookie("brunch_unstable");
-	var chromeos = await getCookie("chromeos");
-	
-	if (notifications.value == "yes") {
-			document.getElementById("intro").innerHTML = '<center>Display update notifications for:</center>';
-		if (brunch_stable.value == "yes") {
-			document.getElementById("notifications-stable").innerHTML = '<b>Brunch stable: </b><input type="checkbox" id="notify_stable" checked/>';
-		} else {
-			document.getElementById("notifications-stable").innerHTML = '<b>Brunch stable: </b><input type="checkbox" id="notify_stable"/>';
-		};
-
-		if (brunch_unstable.value == "yes") {
-			document.getElementById("notifications-unstable").innerHTML = '<b>Brunch unstable: </b><input type="checkbox" id="notify_unstable" checked/>';
-		} else {
-			document.getElementById("notifications-unstable").innerHTML = '<b>Brunch unstable: </b><input type="checkbox" id="notify_unstable"/>';
-		};
-
-		if (chromeos.value == "yes") {
-			document.getElementById("notifications-chromeos").innerHTML = '<b>ChromeOS recovery image: </b><input type="checkbox" id="notify_chromeos" checked/>';
-		} else {
-			document.getElementById("notifications-chromeos").innerHTML = '<b>ChromeOS recovery image: </b><input type="checkbox" id="notify_chromeos"/>';
-		};
-
-		document.getElementById('notify_stable').addEventListener('change', (event) => {
-			if (event.currentTarget.checked) {
-				setCookie("brunch_stable","yes");
+	async function DisplaySettings() {
+		var notifications = await getCookie("notifications");
+		var brunch_stable = await getCookie("brunch_stable");
+		var brunch_unstable = await getCookie("brunch_unstable");
+		var chromeos = await getCookie("chromeos");
+		
+		if (notifications.value == "yes") {
+				document.getElementById("intro").innerHTML = '<center>Display update notifications for:</center>';
+			if (brunch_stable.value == "yes") {
+				document.getElementById("notifications-stable").innerHTML = '<b>Brunch stable: </b><input type="checkbox" id="notify_stable" checked/>';
 			} else {
-				setCookie("brunch_stable","no");
-			}
-		})
+				document.getElementById("notifications-stable").innerHTML = '<b>Brunch stable: </b><input type="checkbox" id="notify_stable"/>';
+			};
 
-		document.getElementById('notify_unstable').addEventListener('change', (event) => {
-			if (event.currentTarget.checked) {
-				setCookie("brunch_unstable","yes");
+			if (brunch_unstable.value == "yes") {
+				document.getElementById("notifications-unstable").innerHTML = '<b>Brunch unstable: </b><input type="checkbox" id="notify_unstable" checked/>';
 			} else {
-				setCookie("brunch_unstable","no");
-			}
-		})
+				document.getElementById("notifications-unstable").innerHTML = '<b>Brunch unstable: </b><input type="checkbox" id="notify_unstable"/>';
+			};
 
-		document.getElementById('notify_chromeos').addEventListener('change', (event) => {
-			if (event.currentTarget.checked) {
-				setCookie("chromeos","yes");
+			if (chromeos.value == "yes") {
+				document.getElementById("notifications-chromeos").innerHTML = '<b>ChromeOS recovery image: </b><input type="checkbox" id="notify_chromeos" checked/>';
 			} else {
-				setCookie("chromeos","no");
-			}
-		})
+				document.getElementById("notifications-chromeos").innerHTML = '<b>ChromeOS recovery image: </b><input type="checkbox" id="notify_chromeos"/>';
+			};
+
+			document.getElementById('notify_stable').addEventListener('change', (event) => {
+				if (event.currentTarget.checked) {
+					setCookie("brunch_stable","yes");
+				} else {
+					setCookie("brunch_stable","no");
+				}
+			})
+
+			document.getElementById('notify_unstable').addEventListener('change', (event) => {
+				if (event.currentTarget.checked) {
+					setCookie("brunch_unstable","yes");
+				} else {
+					setCookie("brunch_unstable","no");
+				}
+			})
+
+			document.getElementById('notify_chromeos').addEventListener('change', (event) => {
+				if (event.currentTarget.checked) {
+					setCookie("chromeos","yes");
+				} else {
+					setCookie("chromeos","no");
+				}
+			})
+		}
 	}
-
+	
+	DisplaySettings();
 };
