@@ -123,5 +123,5 @@ window.onload = function () {
 		return false;
 	};
 
-	setTimeout(() => { ws.send("brunch-version\nlatest-stable\nlatest-unstable"); }, 2000);
+	setTimeout(() => { ws.send("brunch-version\nlatest-stable\nlatest-unstable\nlatest-chromeos"); }, 2000);
 };
