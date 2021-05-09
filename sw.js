@@ -65,11 +65,9 @@ self.addEventListener('notificationclick', function (event)
             {
                 if (client.url.indexOf(rootUrl) >= 0)
                 {
-	            location.href = targetUrl;
                     return client.focus();
                 }
             }
-
             return clients.openWindow(targetUrl).then(function (client) { client.focus(); });
         })
     );
