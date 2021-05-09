@@ -1,5 +1,5 @@
 window.onload = function () {
-	
+
 	if (window["WebSocket"]) {
 		ws_connect();
 		ws.onclose = function (evt) {
@@ -10,12 +10,15 @@ window.onload = function () {
 	}
 
 	checkCookie();
-	//alert(document.cookie);
 	
+	window.addEventListener('appinstalled', () => {
+		window.location.href = "brunch.html";
+	});
+
 	refresh_data = function() {
 		document.getElementById("log").innerHTML = log;
 	};
-	
+
 	document.getElementById("form4").onsubmit = function () {
 		document.getElementById("log").style.background = "gray";
 		log = "<br>Console log:<br>";
@@ -24,6 +27,17 @@ window.onload = function () {
 			return false;
 		}
 		ws.send("install-toolchain");
+		return false;
+	};
+
+	document.getElementById("form5").onsubmit = function () {
+		document.getElementById("log").style.background = "gray";
+		log = "<br>Console log:<br>";
+		document.getElementById("log").innerHTML = log;
+		if (!ws) {
+			return false;
+		}
+		ws.send("install-toolkit");
 		return false;
 	};
 };

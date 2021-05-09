@@ -3,4 +3,4 @@
 ## Work in progress
 
 ### Current URL: 
-- https://sebanc.github.io/brunch-pwa/
+- https://sebanc.github.io/

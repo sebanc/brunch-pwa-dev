@@ -1,72 +1,81 @@
 var ws;
 var log = "";
 
-async function test_click() {
-	alert("test");
-}
-
-async function showNotification(notification_text) {
-        const result = await Notification.requestPermission();
-        if (result === 'granted') {
-            const noti = new Notification('Brunch PWA', {
-                body: notification_text,
-                icon: 'images/icons/512.png'
-            });
-            noti.onclick = () => test_click();
-        }
-}
-
 function refresh_data() {
-  console.log("Data refresh requested without display");
+	console.log("Data refresh requested without display");
+}
+
+async function showNotification(notification_text, tabname) {
+	const registration = await navigator.serviceWorker.ready;
+	const result = await Notification.requestPermission();
+	if (result === 'granted') {
+		const title = 'Brunch PWA';
+		const options = {
+			body: notification_text,
+			icon: '../images/icons/512.png',
+			badge: '../images/icons/512.png',
+			data: {
+				tab: tabname,
+			}
+		};
+		registration.showNotification(title, options);
+	}
 }
 
 function ws_connect() {
-		ws = new WebSocket("ws://localhost:8080");
-		ws.onclose = function (evt) {
-			console.log("Connection closed");
-		};
-		ws.onmessage = function (evt) {
-			var messages = evt.data.split(':');
-			for (var i = 0; i < messages.length; i++) {
-        console.log("Message received: " + messages[i]);
-				if (messages[0] === "brunch-version") {
-          setCookie("brunch-version", messages[1]);
-          break;
-        }
-				if (messages[0] === "latest-stable") {
-                              if (getCookie("notifications") === "yes" && getCookie("brunch_stable") === "yes") {
-                        if (getCookie("latest-stable") !== "" && getCookie("latest-stable") !== messages[1]) {
-                            showNotification("New stable brunch version available: " + messages[1]);
-                        }
-                    }
-		    setCookie("latest-stable", messages[1]);
-          break;
-        }
-				if (messages[0] === "latest-unstable") {
-                              if (getCookie("notifications") === "yes" && getCookie("brunch_unstable") === "yes") {
-                        if (getCookie("latest-unstable") !== "" && getCookie("latest-unstable") !== messages[1]) {
-                            showNotification("New stable brunch version available: " + messages[1]);
-                        }
-                    }
-                    setCookie("latest-unstable", messages[1]);
-          break;
-        }
-        if (messages[0] === "chromeos-version") {
-          setCookie("chromeos-version", messages[1]);
-          break;
-        }
-				if (messages[0] === "latest-chromeos") {
-                              if (getCookie("notifications") === "yes" && getCookie("chromeos") === "yes") {
-                        if (getCookie("latest-chromeos") !== "" && getCookie("latest-chromeos") !== messages[1]) {
-                            showNotification("New stable brunch version available: " + messages[1]);
-                        }
-                    }
-                    setCookie("latest-chromeos", messages[1]);
-          break;
-        }
-				log += "<b>" + messages[i] + "<b><br>";
+	ws = new WebSocket("ws://localhost:8080");
+	ws.onclose = function (evt) {
+		console.log("Connection closed");
+	};
+	ws.onmessage = async function (evt) {
+		var notifications = await getCookie("notifications");
+		var brunch_stable = await getCookie("brunch_stable");
+		var latest_stable = await getCookie("latest_stable");
+		var brunch_unstable = await getCookie("brunch_unstable");
+		var latest_unstable = await getCookie("latest_unstable");
+		var chromeos = await getCookie("chromeos");
+		var latest_chromeos = await getCookie("latest_chromeos");
+		var messages = evt.data.split(':');
+		for (var i = 0; i < messages.length; i++) {
+			console.log("Message received: " + messages[i]);
+			if (messages[0] === "brunch-version") {
+				setCookie("brunch_version", messages[1]);
+				break;
 			}
-      refresh_data();
-		};
+			if (messages[0] === "latest-stable") {
+				if (notifications.value === "yes" && brunch_stable.value === "yes") {
+					if (latest_stable && latest_stable.value !== messages[1]) {
+						showNotification("New stable brunch version available: " + messages[1], "brunch");
+					}
+				}
+				setCookie("latest_stable", messages[1]);
+				break;
+			}
+			if (messages[0] === "latest-unstable") {
+				if (notifications.value === "yes" && brunch_unstable.value === "yes") {
+					if (latest_unstable && latest_stable.unvalue !== messages[1]) {
+						showNotification("New stable brunch version available: " + messages[1], "brunch");
+					}
+				}
+				setCookie("latest_unstable", messages[1]);
+				break;
+			}
+			if (messages[0] === "chromeos-version") {
+				setCookie("chromeos_version", messages[1]);
+				break;
+			}
+			if (messages[0] === "latest-chromeos") {
+				if (notifications.value === "yes" && chromeos.value === "yes") {
+					if (latest_chromeos && latest_chromeos.value !== messages[1]) {
+						showNotification("New stable brunch version available: " + messages[1], "chromeos");
+					}
+				}
+				setCookie("latest_chromeos", messages[1]);
+				break;
+			}
+			log += "<b>" + messages[i] + "<b><br>";
+		}
+		refresh_data();
+	};
 }
-  
+

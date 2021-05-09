@@ -1,5 +1,5 @@
 window.onload = function () {
-	
+
 	if (window["WebSocket"]) {
 		ws_connect();
 		ws.onclose = function (evt) {
@@ -10,16 +10,52 @@ window.onload = function () {
 	}
 
 	checkCookie();
-	//alert(document.cookie);
+	
+	window.addEventListener('appinstalled', () => {
+		window.location.href = "brunch.html";
+	});
 
 	refresh_data = function() {
-  		document.getElementById("chromeos-version").innerHTML = "<b>Installed ChromeOS:</b><br>"+getCookie("chromeos-version");
-		document.getElementById("latest-chromeos").innerHTML = "<b>Latest ChromeOS:</b><br>"+getCookie("latest-chromeos");
+	//	document.getElementById("chromeos-version").innerHTML = "<b>Installed ChromeOS:</b><br>"+getCookie("chromeos-version");
+	//	document.getElementById("latest-chromeos").innerHTML = "<b>Latest ChromeOS:</b><br>"+getCookie("latest-chromeos");
 		document.getElementById("log").innerHTML = log;
 	};
 	
-	refresh_data();
-	
+		cookieStore.addEventListener('change', event => {
+  		console.log(`${event.changed.length} changed cookies`);
+  		for (const cookie of event.changed) {
+    			console.log(`Cookie ${cookie.name} changed to ${cookie.value}`);
+			if (cookie.value) {
+			switch (cookie.name) {
+			  case "chromeos_version":
+				document.getElementById("chromeos-version").innerHTML = '<b>Installed ChromeOS:</b><br>'+cookie.value;
+				break;
+			  case "latest_chromeos":
+				document.getElementById("latest-chromeos").innerHTML = '<b>Latest ChromeOS:</b><br>'+cookie.value;
+				document.getElementById("form3").innerHTML = '<button type="submit" class="buttonstyle">Install the latest chromeos recovery image</button>';
+				break;
+			}
+			}
+		}
+  		console.log(`${event.deleted.length} deleted cookies`);
+ 		for (const cookie of event.deleted) {
+			console.log(`Cookie ${cookie.name} deleted`);
+			switch (cookie.name) {
+			  case "chromeos_version":
+				document.getElementById("chromeos-version").innerHTML = '';
+				break;
+			  case "latest_chromeos":
+				document.getElementById("latest-chromeos").innerHTML = '';
+				document.getElementById("form3").innerHTML = '';
+				break;
+			}
+		}
+		//alert(document.cookie);
+		//refresh_data();
+	});
+
+	//refresh_data();
+
 	document.getElementById("form3").onsubmit = function () {
 		document.getElementById("log").style.background = "gray";
 		log = "<br>Console log:<br>";
@@ -30,4 +66,6 @@ window.onload = function () {
 		ws.send("update-chromeos");
 		return false;
 	};
+	
+	setTimeout(() => { ws.send("chromeos-version\nlatest-chromeos"); }, 2000);
 };

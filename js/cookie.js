@@ -1,44 +1,49 @@
-function setCookie(name,value) {
-    var expires = "";
-    var date = new Date();
-    date.setTime(date.getTime() + (10*365*24*60*60*1000));
-    expires = "; expires=" + date.toUTCString();
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+async function setCookie(name, value) {
+await cookieStore.set({
+  name: name,
+  value: value,
+  expires: Date.now() + (10*365*24*60*60*1000),
+  secure: (new URL(self.location.href)).protocol === 'https:',
+  httpOnly: false,
+});
 }
 
-function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-    }
-    return null;
+async function getCookie(name) {
+cookie = await cookieStore.get(name);
+if (cookie) {
+    console.log(`Found ${cookie.name} cookie: ${cookie.value}`);
+    return cookie;
+} else {
+    console.log('Cookie not found');
+}
 }
 
-function eraseCookie(name) {   
-    document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+async function eraseCookie(name) {   
+await cookieStore.delete(name);
 }
 
-function checkCookie() {
-  var brunch_stable=getCookie("brunch_stable");
-  var brunch_unstable=getCookie("brunch_unstable");
-  var chromeos=getCookie("chromeos");
-  var notifications=getCookie("notifications");
-  if (brunch_stable == null) {
-    setCookie("brunch_stable", "yes");
-    setCookie("latest-stable", "");
-  }
-  if (brunch_unstable == null) {
-    setCookie("brunch_unstable", "no");
-    setCookie("latest-unstable", "");
-  }
-  if (chromeos == null) {
-    setCookie("chromeos", "no");
-    setCookie("latest-chromeos", "");
-  }
-  if (notifications == null) {
-    setCookie("notifications", "no");
-  }  
+async function checkCookie() {
+	var brunch_stable = await getCookie("brunch_stable");
+	var brunch_unstable = await getCookie("brunch_unstable");
+	var chromeos = await getCookie("chromeos");
+	var notifications = await getCookie("notifications");
+	//console.log(brunch_stable.value);
+	//console.log(brunch_unstable.value);
+	//console.log(chromeos.value);
+	//console.log(notifications.value);
+	if (!brunch_stable) {
+		setCookie("brunch_stable", "yes");
+		setCookie("latest_stable", "");
+	}
+	if (!brunch_unstable) {
+		setCookie("brunch_unstable", "no");
+		setCookie("latest_unstable", "");
+	}
+	if (!chromeos) {
+		setCookie("chromeos", "no");
+		setCookie("latest_chromeos", "");
+	}
+	if (!notifications) {
+		setCookie("notifications", "no");
+	}
 }
