@@ -23,23 +23,23 @@ window.onload = function () {
 		var chromeos = await getCookie("chromeos");
 		
 		if (notifications.value == "yes") {
-				document.getElementById("intro").innerHTML = '<center>Display update notifications for:</center>';
+				document.getElementById("intro").innerHTML = 'Display update notifications for:';
 			if (brunch_stable.value == "yes") {
-				document.getElementById("notifications-stable").innerHTML = '<b>Brunch stable: </b><input type="checkbox" id="notify_stable" checked/>';
+				document.getElementById("notifications-stable").innerHTML = '<b>Brunch stable releases: </b><input type="checkbox" id="notify_stable" checked/>';
 			} else {
-				document.getElementById("notifications-stable").innerHTML = '<b>Brunch stable: </b><input type="checkbox" id="notify_stable"/>';
+				document.getElementById("notifications-stable").innerHTML = '<b>Brunch stable releases: </b><input type="checkbox" id="notify_stable"/>';
 			};
 
 			if (brunch_unstable.value == "yes") {
-				document.getElementById("notifications-unstable").innerHTML = '<b>Brunch unstable: </b><input type="checkbox" id="notify_unstable" checked/>';
+				document.getElementById("notifications-unstable").innerHTML = '<b>Brunch unstable releases: </b><input type="checkbox" id="notify_unstable" checked/>';
 			} else {
-				document.getElementById("notifications-unstable").innerHTML = '<b>Brunch unstable: </b><input type="checkbox" id="notify_unstable"/>';
+				document.getElementById("notifications-unstable").innerHTML = '<b>Brunch unstable releases: </b><input type="checkbox" id="notify_unstable"/>';
 			};
 
 			if (chromeos.value == "yes") {
-				document.getElementById("notifications-chromeos").innerHTML = '<b>ChromeOS recovery image: </b><input type="checkbox" id="notify_chromeos" checked/>';
+				document.getElementById("notifications-chromeos").innerHTML = '<b>ChromeOS recovery images: </b><input type="checkbox" id="notify_chromeos" checked/>';
 			} else {
-				document.getElementById("notifications-chromeos").innerHTML = '<b>ChromeOS recovery image: </b><input type="checkbox" id="notify_chromeos"/>';
+				document.getElementById("notifications-chromeos").innerHTML = '<b>ChromeOS recovery images: </b><input type="checkbox" id="notify_chromeos"/>';
 			};
 
 			document.getElementById('notify_stable').addEventListener('change', (event) => {
