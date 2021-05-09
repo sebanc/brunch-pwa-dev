@@ -39,7 +39,7 @@ window.onload = function () {
 	}
 
 	if ('serviceWorker' in navigator) {
-		navigator.serviceWorker.register('/brunch-pwa-dev/sw.js').then(function(reg) {
+		navigator.serviceWorker.register('/brunch-pwa-dev/sw.js', {scope: '/brunch-pwa-dev/'}).then(function(reg) {
 			console.log('Registration succeeded. Scope is ' + reg.scope);
 			periodicsync();
 		}).catch(function(error) {
