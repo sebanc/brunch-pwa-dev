@@ -9,7 +9,6 @@ self.addEventListener('install', function(event) {
 				'/brunch-pwa-dev/index.html',
 				'/brunch-pwa-dev/css/style.css',
 				'/brunch-pwa-dev/html/addons.html',
-				'/brunch-pwa-dev/html/brunch.html',
 				'/brunch-pwa-dev/html/chromeos.html',
 				'/brunch-pwa-dev/html/settings.html',
 				'/brunch-pwa-dev/images/background/background.png',
