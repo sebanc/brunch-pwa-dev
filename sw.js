@@ -56,7 +56,10 @@ self.addEventListener('notificationclick', function (event)
 {
     console.log(event.notification.data.tab);
     const rootUrl = new URL('/brunch-pwa-dev/', location).href;
-    const targetUrl = new URL('/brunch-pwa-dev/html/' + event.notification.data.tab + '.html', location).href;
+    if (event.notification.data.tab === "brunch")
+	   const targetUrl = new URL('/brunch-pwa-dev/', location).href;
+    else
+           const targetUrl = new URL('/brunch-pwa-dev/html/' + event.notification.data.tab + '.html', location).href;
     event.notification.close();
     event.waitUntil(
         clients.matchAll().then(matchedClients =>
