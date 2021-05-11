@@ -58,7 +58,7 @@ window.onload = function () {
 
 	document.getElementById("form3").onsubmit = function () {
 		document.getElementById("log").style.background = "gray";
-		log = "<br>Console log:<br>";
+		log = "<br><center>Console log:</center><br>";
 		document.getElementById("log").innerHTML = log;
 		if (!ws) {
 			return false;
