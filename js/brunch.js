@@ -103,7 +103,7 @@ window.onload = function () {
 
 	document.getElementById("form").onsubmit = function () {
 		document.getElementById("log").style.background = "gray";
-		log = "<br><center>Console log:</center><br>";
+		log = "<br><center><b>Console log:</b></center><br>";
 		document.getElementById("log").innerHTML = log;
 		if (!ws) {
 			return false;
@@ -114,7 +114,7 @@ window.onload = function () {
 
 	document.getElementById("form2").onsubmit = function () {
 		document.getElementById("log").style.background = "gray";
-		log = "<br><center>Console log:</center><br>";
+		log = "<br><center><b>Console log:</b></center><br>";
 		document.getElementById("log").innerHTML = log;
 		if (!ws) {
 			return false;
