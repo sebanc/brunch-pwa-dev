@@ -87,6 +87,7 @@ body {
 .box {
 	width: 80%;
 	height: 500px;
+	display: block;
 	float: center;
 }
 
