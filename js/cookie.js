@@ -44,6 +44,10 @@ async function checkCookie() {
 		setCookie("latest_chromeos", "");
 	}
 	if (!notifications) {
-		setCookie("notifications", "no");
+		if (Notification.permission !== "granted") {
+			setCookie("notifications", "no");
+		} else {
+			setCookie("notifications", "yes");
+		}
 	}
 }
