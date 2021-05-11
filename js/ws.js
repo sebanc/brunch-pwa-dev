@@ -73,7 +73,7 @@ function ws_connect() {
 				setCookie("latest_chromeos", messages[1]);
 				break;
 			}
-			log += "<b>" + messages[i] + "<b><br>";
+			log += messages[i] + "<br>";
 		}
 		refresh_data();
 	};
