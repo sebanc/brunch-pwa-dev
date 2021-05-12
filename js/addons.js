@@ -19,7 +19,7 @@ window.onload = function () {
 		document.getElementById("log").innerHTML = log;
 	};
 	
-	if (navigator.online) {
+	if (navigator.onLine) {
 	document.getElementById("form4").innerHTML = '<button type="submit" class="buttonstyle">Install / Update the brunch-toolchain and brioche</button>';
 	document.getElementById("warning").innerHTML = '<b>Warning:<br>This will remove any data installed in /usr/local (notably the brunch-toolkit / chromebrew / crouton)</b>';
 	document.getElementById("form5").innerHTML = '<button type="submit" class="buttonstyle">Install / Update the brunch-toolkit</button>';
