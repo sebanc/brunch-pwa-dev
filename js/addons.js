@@ -18,6 +18,11 @@ window.onload = function () {
 	refresh_data = function() {
 		document.getElementById("log").innerHTML = log;
 	};
+	
+	if (navigator.online) {
+	document.getElementById("form4").innerHTML = '<button type="submit" class="buttonstyle">Install / Update the brunch-toolchain and brioche</button>';
+	document.getElementById("warning").innerHTML = '<b>Warning:<br>This will remove any data installed in /usr/local (notably the brunch-toolkit / chromebrew / crouton)</b>';
+	document.getElementById("form5").innerHTML = '<button type="submit" class="buttonstyle">Install / Update the brunch-toolkit</button>';
 
 	document.getElementById("form4").onsubmit = function () {
 		document.getElementById("log").style.background = "gray";
@@ -40,4 +45,5 @@ window.onload = function () {
 		ws.send("install-toolkit");
 		return false;
 	};
+	}
 };
