@@ -12,8 +12,8 @@ async function showNotification(notification_text, tabname) {
 		const title = 'Brunch PWA';
 		const options = {
 			body: notification_text,
-			icon: '../images/icons/512.png',
-			badge: '../images/icons/512.png',
+			icon: '/brunch-pwa-dev/images/icons/512.png',
+			//badge: '/brunch-pwa-dev/images/icons/512.png',
 			data: {
 				tab: tabname,
 			}
