@@ -33,15 +33,15 @@ async function checkCookie() {
 	//console.log(notifications.value);
 	if (!brunch_stable) {
 		setCookie("brunch_stable", "yes");
-		setCookie("latest_stable", "");
+		//setCookie("latest_stable", "");
 	}
 	if (!brunch_unstable) {
 		setCookie("brunch_unstable", "no");
-		setCookie("latest_unstable", "");
+		//setCookie("latest_unstable", "");
 	}
 	if (!chromeos) {
 		setCookie("chromeos", "no");
-		setCookie("latest_chromeos", "");
+		//setCookie("latest_chromeos", "");
 	}
 	if (!notifications) {
 		if (Notification.permission !== "granted") {
