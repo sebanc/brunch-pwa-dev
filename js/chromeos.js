@@ -12,7 +12,7 @@ window.onload = function () {
 	checkCookie();
 	
 	window.addEventListener('appinstalled', () => {
-		window.location.href = "brunch.html";
+		window.location.href = "../index.html";
 	});
 
 	refresh_data = function() {
