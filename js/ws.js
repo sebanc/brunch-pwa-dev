@@ -17,7 +17,8 @@ async function showNotification(notification_text, tabname) {
 	//	  .then(function(registration) {
     //sw = registration;
   //})
-	console.log(navigator.serviceWorker);
+	console.log(self);
+	console.log(navigator);
       //.catch(function (err) {
       //  sw = self.registration;
      //})
