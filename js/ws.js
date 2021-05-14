@@ -7,7 +7,11 @@ function refresh_data() {
 
 async function showNotification(notification_text, tabname) {
 	//const registration = await navigator.serviceWorker.ready;
-	const registration = self.registration;
+	if (!navigator.serviceWorker) {
+		const registration = self.registration;
+	} else {
+		const registration = await navigator.serviceWorker.ready;
+	}
 	//const result = await Notification.requestPermission();
 	//if (result === 'granted') {
 		const title = 'Brunch PWA';
