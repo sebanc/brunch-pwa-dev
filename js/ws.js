@@ -8,8 +8,8 @@ function refresh_data() {
 async function showNotification(notification_text, tabname) {
 	//const registration = await navigator.serviceWorker.ready;
 	const registration = self.registration;
-	const result = await Notification.requestPermission();
-	if (result === 'granted') {
+	//const result = await Notification.requestPermission();
+	//if (result === 'granted') {
 		const title = 'Brunch PWA';
 		const options = {
 			body: notification_text,
@@ -20,7 +20,7 @@ async function showNotification(notification_text, tabname) {
 			}
 		};
 		registration.showNotification(title, options);
-	}
+	//}
 }
 
 function ws_connect() {
