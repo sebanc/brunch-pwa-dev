@@ -31,13 +31,12 @@ async function showNotification(notification_text, tabname) {
 				tab: tabname,
 			}
 		};
-    navigator.serviceWorker.ready
-		  .then(function(registration) {
-    registration.showNotification(title, options);
-  })
-      .catch(function (err) {
-        self.registration.showNotification(title, options);
-     })
+    const sw = await navigator.serviceWorker.ready;
+	if (sw) {
+	    sw.showNotification(title, options);
+  } else {
+            self.registration.showNotification(title, options);
+     }
 		//sw.showNotification(title, options);
 	//}
 }
