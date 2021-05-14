@@ -13,12 +13,13 @@ async function showNotification(notification_text, tabname) {
 	//	const registration = await navigator.serviceWorker.ready;
 	//}
 	var sw;
-	  navigator.serviceWorker.ready.then(function(registration) {
+	  navigator.serviceWorker.ready
+		  .then(function(registration) {
     sw = registration;
-  });
-} else {
-    sw = self.registration;
-}
+  })
+      .catch(function (err) {
+        sw = self.registration;
+     })
 	//const result = await Notification.requestPermission();
 	//if (result === 'granted') {
 		const title = 'Brunch PWA';
