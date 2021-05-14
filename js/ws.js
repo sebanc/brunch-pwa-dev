@@ -7,11 +7,18 @@ function refresh_data() {
 
 async function showNotification(notification_text, tabname) {
 	//const registration = await navigator.serviceWorker.ready;
-	if (!navigator.serviceWorker) {
-		const registration = self.registration;
-	} else {
-		const registration = await navigator.serviceWorker.ready;
-	}
+	//if (!navigator.serviceWorker) {
+	//	const registration = self.registration;
+	//} else {
+	//	const registration = await navigator.serviceWorker.ready;
+	//}
+	var sw;
+	  navigator.serviceWorker.ready.then(function(registration) {
+    sw = registration;
+  });
+} else {
+    sw = self.registration;
+}
 	//const result = await Notification.requestPermission();
 	//if (result === 'granted') {
 		const title = 'Brunch PWA';
@@ -23,7 +30,7 @@ async function showNotification(notification_text, tabname) {
 				tab: tabname,
 			}
 		};
-		registration.showNotification(title, options);
+		sw.showNotification(title, options);
 	//}
 }
 
