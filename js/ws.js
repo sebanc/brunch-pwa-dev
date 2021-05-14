@@ -31,7 +31,14 @@ async function showNotification(notification_text, tabname) {
 				tab: tabname,
 			}
 		};
-		sw.showNotification(title, options);
+    navigator.serviceWorker.ready
+		  .then(function(registration) {
+    registration.showNotification(title, options);
+  })
+      .catch(function (err) {
+        self.registration.showNotification(title, options);
+     })
+		//sw.showNotification(title, options);
 	//}
 }
 
