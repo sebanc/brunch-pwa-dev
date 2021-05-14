@@ -32,7 +32,7 @@ async function showNotification(notification_text, tabname) {
 				tab: tabname,
 			}
 		};
-	if (navigator) {
+	if (navigator.serviceWorker.controller.state === "activated") {
             const sw = await navigator.serviceWorker.ready;
 	    sw.showNotification(title, options);
   } else {
