@@ -31,8 +31,8 @@ async function showNotification(notification_text, tabname) {
 				tab: tabname,
 			}
 		};
-    const sw = await navigator.serviceWorker.ready;
-	if (sw) {
+	if (navigator) {
+            const sw = await navigator.serviceWorker.ready;
 	    sw.showNotification(title, options);
   } else {
             self.registration.showNotification(title, options);
