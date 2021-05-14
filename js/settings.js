@@ -13,7 +13,7 @@ window.onload = function () {
 	//alert(document.cookie);
 	
 	window.addEventListener('appinstalled', () => {
-		window.location.href = "brunch.html";
+		window.location.href = "../index.html";
 	});
 
 	async function DisplaySettings() {
