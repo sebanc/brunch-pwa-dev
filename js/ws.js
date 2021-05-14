@@ -7,14 +7,7 @@ function refresh_data() {
 
 async function showNotification(notification_text, tabname) {
 	//const registration = await navigator.serviceWorker.ready;
-	if (!navigator.serviceWorker) {
-		navigator.serviceWorker.register('/brunch-pwa-dev/sw.js', {scope: '/brunch-pwa-dev/'}).then(function(reg) {
-			console.log('Registration succeeded. Scope is ' + reg.scope);
-		}).catch(function(error) {
-			console.log('Registration failed with ' + error);
-		});
-	}
-	const registration = await navigator.serviceWorker.ready;
+	const registration = self.registration;
 	const result = await Notification.requestPermission();
 	if (result === 'granted') {
 		const title = 'Brunch PWA';
