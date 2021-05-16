@@ -34,7 +34,7 @@ async function showNotification(notification_text, tabname) {
 				tab: tabname,
 			}
 		};
-	if (typeof Window === 'function') {
+	if (typeof Window !== 'undefined') {
             const sw = await navigator.serviceWorker.ready;
 	    sw.showNotification(title, options);
   } else {
