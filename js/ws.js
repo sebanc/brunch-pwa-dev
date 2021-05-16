@@ -15,7 +15,7 @@ data: {
 tab: tabname,
 }
 };
-//
+//if (typeof Window !== 'undefined') {
 const sw = await navigator.serviceWorker.ready;
 sw.showNotification(title, options);
 } else {
