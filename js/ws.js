@@ -17,9 +17,9 @@ async function showNotification(notification_text, tabname) {
 	//	  .then(function(registration) {
     //sw = registration;
   //})
-	console.log(self);
-	console.log(navigator);
-	console.log(typeof Window);
+	//console.log(self);
+	//console.log(navigator);
+	//console.log(typeof Window);
       //.catch(function (err) {
       //  sw = self.registration;
      //})
