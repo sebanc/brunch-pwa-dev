@@ -92,7 +92,14 @@ a {
 	padding: 1em;
 }
 
+form {
+	margin:0 0;
+	padding:0 0;
+}
+
 .buttonstyle {
+	margin:0 0;
+	padding:0 0;
 	background: #666;
 	color: #ffffff;
 	width: 200px;
