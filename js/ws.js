@@ -57,7 +57,7 @@ function ws_connect() {
 		var latest_unstable = await getCookie("latest_unstable");
 		var chromeos = await getCookie("chromeos");
 		var latest_chromeos = await getCookie("latest_chromeos");
-		var messages = evt.data.split('=');
+		var messages = evt.data.split(':end:');
 		for (var i = 0; i < messages.length; i++) {
 			console.log("Message received: " + messages[i]);
 			if (messages[0] === "brunch-version") {
