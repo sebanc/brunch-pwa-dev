@@ -73,6 +73,7 @@ a {
 	top: 30px;
 	bottom: 0;
 	left: 0;
+	padding-bottom: 5px;
 }
 
 .fright {
@@ -97,7 +98,6 @@ a {
 }
 
 .buttonstyle {
-	padding-top: 5px;
 	background: #666;
 	color: #ffffff;
 	width: 200px;
