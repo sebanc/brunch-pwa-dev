@@ -95,7 +95,7 @@ function ws_connect() {
 				setCookie("latest_chromeos", messages[1]);
 				break;
 			}
-			log += messages[i] + "<br>";
+			log += messages[i];
 		}
 		refresh_data();
 	};
