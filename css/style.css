@@ -73,8 +73,6 @@ p {
 	top: 30px;
 	bottom: 0;
 	left: 0;
-	margin:0 0;
-	padding:0 0;
 }
 
 .fright {
@@ -96,19 +94,6 @@ p {
     	margin-left: auto;
     	margin-right: auto;
 	padding: 1em;
-}
-
-form {
-	font-size: 0;
-	margin:0 0;
-	padding:0 0;
-}
-
-button {
-	font-size: 0;
-	display:block;
-	margin:0 0;
-	padding:0 0;
 }
 
 .buttonstyle {
