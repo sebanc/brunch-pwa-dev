@@ -103,6 +103,7 @@ button {
 }
 
 .buttonstyle {
+	display:block;
 	margin:0 0;
 	padding:0 0;
 	background: #666;
