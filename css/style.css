@@ -11,7 +11,6 @@ body {
 
 a {
 	color: white;
-	padding-bottom: 5px;
 }
 
 .navbar {
@@ -97,7 +96,8 @@ a {
 	padding: 1em;
 }
 
-.buttonstyle { 
+.buttonstyle {
+	padding-top: 5px;
 	background: #666;
 	color: #ffffff;
 	width: 200px;
