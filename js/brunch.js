@@ -91,7 +91,7 @@ window.onload = function () {
 	});
 
 	document.getElementById("form").onsubmit = function () {
-		document.getElementById("log").style.background = "gray";
+		document.getElementById("log").style.background = "#A9A9A9";
 		log = "<center><b>Console log:</b></center><br>";
 		document.getElementById("log").innerHTML = log;
 		if (!ws) {
@@ -102,7 +102,7 @@ window.onload = function () {
 	};
 
 	document.getElementById("form2").onsubmit = function () {
-		document.getElementById("log").style.background = "gray";
+		document.getElementById("log").style.background = "#A9A9A9";
 		log = "<center><b>Console log:</b></center><br>";
 		document.getElementById("log").innerHTML = log;
 		if (!ws) {
