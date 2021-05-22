@@ -51,7 +51,7 @@ window.onload = function () {
 	});
 
 	document.getElementById("form3").onsubmit = function () {
-		document.getElementById("log").style.background = "#C0C0C0";
+		document.getElementById("log").style.background = "#A9A9A9";
 		log = "<center><b>Console log:</b></center><br>";
 		document.getElementById("log").innerHTML = log;
 		if (!ws) {
