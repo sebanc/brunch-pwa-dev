@@ -14,7 +14,7 @@ p {
 }
 
 form {
-	display: inline;
+	display: inline-block;
 	padding-top: 10px;
 }
 
