@@ -51,29 +51,25 @@ self.addEventListener('periodicsync', event => {
 	}
 });
 
-self.addEventListener('notificationclick', function (event)
-{
-    console.log(event.notification.data.tab);
-    const rootUrl = new URL('/brunch-pwa-dev/', location).href;
-    var targetUrl;
-    if (event.notification.data.tab === "brunch") {
-	   targetUrl = new URL('/brunch-pwa-dev/', location).href;
-    } else {
-           targetUrl = new URL('/brunch-pwa-dev/html/' + event.notification.data.tab + '.html', location).href;
-    }
-    event.notification.close();
-    event.waitUntil(
-        clients.matchAll().then(matchedClients =>
-        {
-            for (let client of matchedClients)
-            {
-                if (client.url.indexOf(rootUrl) >= 0)
-                {
-		    client.navigate(targetUrl);
-                    return client.focus();
-                }
-            }
-            return clients.openWindow(targetUrl);
-        })
-    );
+self.addEventListener('notificationclick', function (event) {
+	console.log(event.notification.data.tab);
+	const rootUrl = new URL('/brunch-pwa-dev/', location).href;
+	var targetUrl;
+	if (event.notification.data.tab === "brunch") {
+		targetUrl = new URL('/brunch-pwa-dev/', location).href;
+	} else {
+		targetUrl = new URL('/brunch-pwa-dev/html/' + event.notification.data.tab + '.html', location).href;
+	}
+	event.notification.close();
+	event.waitUntil(
+		clients.matchAll().then(matchedClients => {
+			for (let client of matchedClients) {
+				if (client.url.indexOf(rootUrl) >= 0) {
+					client.navigate(targetUrl);
+					return client.focus();
+				}
+			}
+			return clients.openWindow(targetUrl);
+		})
+	);
 });

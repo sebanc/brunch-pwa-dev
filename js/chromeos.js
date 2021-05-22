@@ -16,25 +16,23 @@ window.onload = function () {
 	});
 
 	refresh_data = function() {
-	//	document.getElementById("chromeos-version").innerHTML = "<b>Installed ChromeOS:</b><br>"+getCookie("chromeos-version");
-	//	document.getElementById("latest-chromeos").innerHTML = "<b>Latest ChromeOS:</b><br>"+getCookie("latest-chromeos");
 		document.getElementById("log").innerHTML = log;
 	};
 	
-		cookieStore.addEventListener('change', event => {
+	cookieStore.addEventListener('change', event => {
   		console.log(`${event.changed.length} changed cookies`);
   		for (const cookie of event.changed) {
     			console.log(`Cookie ${cookie.name} changed to ${cookie.value}`);
 			if (cookie.value) {
-			switch (cookie.name) {
-			  case "chromeos_version":
-				document.getElementById("chromeos-version").innerHTML = '<b>Installed ChromeOS:</b><br>'+cookie.value;
-				break;
-			  case "latest_chromeos":
-				document.getElementById("latest-chromeos").innerHTML = '<b>Latest ChromeOS:</b><br>'+cookie.value;
-				document.getElementById("form3").innerHTML = '<button type="submit" class="buttonstyle">Install the latest chromeos recovery image</button>';
-				break;
-			}
+				switch (cookie.name) {
+				  case "chromeos_version":
+					document.getElementById("chromeos-version").innerHTML = '<b>Installed ChromeOS:</b><br>'+cookie.value;
+					break;
+				  case "latest_chromeos":
+					document.getElementById("latest-chromeos").innerHTML = '<b>Latest ChromeOS:</b><br>'+cookie.value;
+					document.getElementById("form3").innerHTML = '<button type="submit" class="buttonstyle">Install the latest chromeos recovery image</button>';
+					break;
+				}
 			}
 		}
   		console.log(`${event.deleted.length} deleted cookies`);
@@ -50,15 +48,11 @@ window.onload = function () {
 				break;
 			}
 		}
-		//alert(document.cookie);
-		//refresh_data();
 	});
-
-	//refresh_data();
 
 	document.getElementById("form3").onsubmit = function () {
 		document.getElementById("log").style.background = "gray";
-		log = "<center><b>Console log:</b></center><br>";
+		log = "<center><b>Console log:</b></center><br><br>";
 		document.getElementById("log").innerHTML = log;
 		if (!ws) {
 			return false;

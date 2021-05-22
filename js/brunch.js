@@ -10,7 +10,6 @@ window.onload = function () {
 	}
 
 	checkCookie();
-	//alert(document.cookie);
 
 	window.addEventListener('appinstalled', () => {
 		window.location.reload();
@@ -48,12 +47,6 @@ window.onload = function () {
 	};
 
 	refresh_data = function() {
-	     //var test = await getCookie("brunch-version");                               
-             //test = await getCookie("brunch-version");
-	     //console.log("test"+test.value);
-		//document.getElementById("brunch-version").innerHTML = "<b>Installed Brunch:</b><br>"+ await getCookie("brunch-version").value;
-		//document.getElementById("latest-stable").innerHTML = "<b>Stable Brunch:</b><br>"+getCookie("latest-stable");
-		//document.getElementById("latest-unstable").innerHTML = "<b>Unstable Brunch:</b><br>"+getCookie("latest-unstable");
 		document.getElementById("log").innerHTML = log;
 	};
 	
@@ -62,19 +55,19 @@ window.onload = function () {
   		for (const cookie of event.changed) {
     			console.log(`Cookie ${cookie.name} changed to ${cookie.value}`);
 			if (cookie.value) {
-			switch (cookie.name) {
-			  case "brunch_version":
-				document.getElementById("brunch-version").innerHTML = '<b>Installed Brunch:</b><br>'+cookie.value;
-				break;
-			  case "latest_stable":
-				document.getElementById("latest-stable").innerHTML = '<b>Stable Brunch:</b><br>'+cookie.value+'<br>=> <a href="https://github.com/sebanc/brunch/releases/latest" target="_blank">Changelog</a>';
-				document.getElementById("form").innerHTML = '<button type="submit" class="buttonstyle">Install the latest stable brunch</button>';
-				break;
-			  case "latest_unstable":
-				document.getElementById("latest-unstable").innerHTML = '<b>Unstable Brunch:</b><br>'+cookie.value+'<br>=> <a href="https://github.com/sebanc/brunch-unstable/releases/latest" target="_blank">Changelog</a>';
-				document.getElementById("form2").innerHTML = '<button type="submit" class="buttonstyle">Install the latest unstable brunch</button>';
-				break;
-			}
+				switch (cookie.name) {
+				  case "brunch_version":
+					document.getElementById("brunch-version").innerHTML = '<b>Installed Brunch:</b><br>'+cookie.value;
+					break;
+				  case "latest_stable":
+					document.getElementById("latest-stable").innerHTML = '<b>Stable Brunch:</b><br>'+cookie.value+'<br>=> <a href="https://github.com/sebanc/brunch/releases/latest" target="_blank">Changelog</a>';
+					document.getElementById("form").innerHTML = '<button type="submit" class="buttonstyle">Install the latest stable brunch</button>';
+					break;
+				  case "latest_unstable":
+					document.getElementById("latest-unstable").innerHTML = '<b>Unstable Brunch:</b><br>'+cookie.value+'<br>=> <a href="https://github.com/sebanc/brunch-unstable/releases/latest" target="_blank">Changelog</a>';
+					document.getElementById("form2").innerHTML = '<button type="submit" class="buttonstyle">Install the latest unstable brunch</button>';
+					break;
+				}
 			}
 		}
 
@@ -95,11 +88,7 @@ window.onload = function () {
 				break;
 			}
 		}
-		//alert(document.cookie);
-		//refresh_data();
 	});
-
-	//refresh_data();
 
 	document.getElementById("form").onsubmit = function () {
 		document.getElementById("log").style.background = "gray";
@@ -114,7 +103,7 @@ window.onload = function () {
 
 	document.getElementById("form2").onsubmit = function () {
 		document.getElementById("log").style.background = "gray";
-		log = "<center><b>Console log:</b></center><br>";
+		log = "<center><b>Console log:</b></center><br><br>";
 		document.getElementById("log").innerHTML = log;
 		if (!ws) {
 			return false;
