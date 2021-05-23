@@ -12,4 +12,6 @@ window.onload = function () {
 	checkCookie();
   
 	setTimeout(() => { ws.send("reboot"); }, 2000);
+	
+	close();
 };
